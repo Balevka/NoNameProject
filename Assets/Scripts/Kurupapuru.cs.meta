@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 90eb128fdd9eb8440817588a1241bd76
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - kurupapuru: {fileID: 6575381868801677231, guid: c90e8919ddd801244aa6b38fbb381305,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
