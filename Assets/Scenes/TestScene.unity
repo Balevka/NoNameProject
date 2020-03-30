@@ -5498,6 +5498,8 @@ GameObject:
   - component: {fileID: 965424991}
   - component: {fileID: 965424993}
   - component: {fileID: 965424994}
+  - component: {fileID: 965424995}
+  - component: {fileID: 965424996}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5564,7 +5566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965424990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: -2.24, z: 0}
+  m_LocalPosition: {x: 0.14, y: 0.4, z: -0.14}
   m_LocalScale: {x: 1.2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5601,8 +5603,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.07978021, g: 0.8584906, b: 0, a: 1}
-  m_Intensity: 2
-  m_Range: 6
+  m_Intensity: 5
+  m_Range: 1.9897258
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -5650,6 +5652,40 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &965424995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965424990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62baea058dbbab243b726ce4c5b62309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!50 &965424996
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965424990}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &978836854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9573,7 +9609,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.557083
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9597,7 +9633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608055995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.78}
+  m_LocalPosition: {x: 2.48, y: 0.55, z: -6.72}
   m_LocalScale: {x: 3.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12682,7 +12718,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.2392157, g: 0.4784314, b: 0.6666667, a: 1}
   m_Intensity: 8
-  m_Range: 12
+  m_Range: 13.084321
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
