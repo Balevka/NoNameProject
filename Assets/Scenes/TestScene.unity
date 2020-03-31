@@ -5566,7 +5566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965424990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 0.4, z: -0.14}
+  m_LocalPosition: {x: -4.22, y: 0.4, z: -0.14}
   m_LocalScale: {x: 1.2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5665,6 +5665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  cam: {fileID: 1608055997}
 --- !u!50 &965424996
 Rigidbody2D:
   serializedVersion: 4
@@ -9595,7 +9596,7 @@ Camera:
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -9606,10 +9607,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 3.557083
+  far clip plane: 15
+  field of view: 17.022615
+  orthographic: 0
+  orthographic size: 1.6679476
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9633,7 +9634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608055995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.48, y: 0.55, z: -6.72}
+  m_LocalPosition: {x: 0.14, y: 0.1, z: -10.94}
   m_LocalScale: {x: 3.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
