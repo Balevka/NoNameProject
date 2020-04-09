@@ -32,6 +32,6 @@ public class Armor_Data : ScriptableObject
     [SerializeField] private Sprite weaponSprite;
     public Sprite WeaponSprite{
     	get {return weaponSprite;}
-    	protected set {}
+    	protected set { }
     }
 }

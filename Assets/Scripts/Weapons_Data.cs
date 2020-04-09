@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon", order = 52)]
 public class Weapons : ScriptableObject
 {
-	[SerializeField] private string name;
-    public string Name{
-    	get {return name;}
+	[SerializeField] private string nameWeapon;
+    public string NameWeapon{
+    	get {return nameWeapon;}
     	protected set {}
     }
 
