@@ -9,6 +9,7 @@ internal class CameraSettings : MonoBehaviour
     private new Camera camera;
     [SerializeField] private bool isOrthographic = true;
     [SerializeField] internal float cameraSpeed = 5f;
+    [SerializeField] internal Texture2D cursorImage;
     
 
     // Start is called before the first frame update
@@ -20,8 +21,10 @@ internal class CameraSettings : MonoBehaviour
 
     }
 
+   
 
-    
+
+
 
     // Update is called once per frame
     void Update()
