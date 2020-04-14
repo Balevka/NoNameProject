@@ -18,9 +18,9 @@ TagManager:
   - Wall
   - Main Camera
   - Player
-  - 
-  - 
-  - 
+  - Light
+  - Enemy
+  - Bullet
   - 
   - 
   - 
@@ -39,9 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Light
+    uniqueID: 3426700205
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer
+  - name: Floor
+    uniqueID: 803824035
+    locked: 0
+  - name: Player
     uniqueID: 3372346619
+    locked: 0
+  - name: Wall
+    uniqueID: 3331692321
     locked: 0

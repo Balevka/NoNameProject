@@ -21,6 +21,7 @@ public class Kurupapuru : MonoBehaviour
     {
         CreateKurupapuru(new Vector2(r.Next(-10, 10), 10f));
         
+        
     }
 
     private void CreateKurupapuru(Vector2 vector)
@@ -29,11 +30,11 @@ public class Kurupapuru : MonoBehaviour
         kurupapuruCount++;
     }
 
-    
 
-    private void OnMouseDown()
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        Destroy(collision.gameObject);
     }
 
 }
