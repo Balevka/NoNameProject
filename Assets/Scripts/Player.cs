@@ -32,7 +32,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Movement();
+        rb.velocity = Movement();
+        
+
 
         
         
@@ -44,12 +46,12 @@ public class Player : MonoBehaviour
 
 
 
-    private void Movement()
+    private Vector2 Movement()
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
+        return new Vector2(movement.x * speed, movement.y * speed);
         
     }
 
