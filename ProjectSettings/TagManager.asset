@@ -49,12 +49,12 @@ TagManager:
   - name: Floor
     uniqueID: 803824035
     locked: 0
+  - name: Player
+    uniqueID: 3372346619
+    locked: 0
   - name: Wall
     uniqueID: 3331692321
     locked: 0
   - name: Item
     uniqueID: 635469653
-    locked: 0
-  - name: Player
-    uniqueID: 3372346619
     locked: 0
