@@ -7,8 +7,8 @@ using Random = UnityEngine.Random;
 public class BoardManager : MonoBehaviour
 {
     
-    public int columns = 8;
-    public int rows = 15;
+    private int columns = 8;
+    private int rows = 15;
 
     private Count obstacleCount = new Count(5, 9);
     [SerializeField] private GameObject exit;
@@ -36,6 +36,8 @@ public class BoardManager : MonoBehaviour
     private void BoardSetup()
     {
         boardHolder = new GameObject("Board").transform;
+        columns = RandomColumn(columns);
+        rows = RandomRow(rows);
 
         for (int x = -1; x < columns + 1; x++)
         {
@@ -62,6 +64,17 @@ public class BoardManager : MonoBehaviour
         gridPositions.RemoveAt(randomIndex);
 
         return randomPosition;
+    }
+
+    public int RandomRow(int row)
+    {
+        row = Random.Range(8, 15);
+        return row;
+    }
+    public int RandomColumn(int column)
+    {
+        column = Random.Range(8, 15);
+        return column;
     }
 
     private void LayoutObjectAtRandom(GameObject[] tiles, int minimum, int maximum)

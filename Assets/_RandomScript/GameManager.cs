@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private bool doingSetup;
     public static GameManager instance = null;
     private BoardManager boardScript;
-    [SerializeField] private int level = 1;
+    [SerializeField] private int level = 6;
     void Awake()
     {
         if (instance == null)
