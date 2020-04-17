@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private Vector2 mousePos;
     [SerializeField] private Camera cam;
-    
+    private float restartLevelDelay = 2f;
 
 
 
@@ -32,17 +32,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        rb.velocity = Movement();
-        
-
-
-        
-        
-            
+        rb.velocity = Movement();        
         
     }
 
-    
+    private void Restart()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
 
 
 
@@ -70,6 +67,14 @@ public class Player : MonoBehaviour
         Debug.Log(playerAnimator.GetCurrentAnimatorStateInfo(0));
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Exit"))
+        {
+            Invoke("Restart", restartLevelDelay);
+            enabled = false;
+        }
+    }
 
 
 
@@ -80,5 +85,4 @@ public class Player : MonoBehaviour
 
 
 
-
-}
+    }

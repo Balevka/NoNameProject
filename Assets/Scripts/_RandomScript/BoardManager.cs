@@ -7,10 +7,10 @@ using Random = UnityEngine.Random;
 public class BoardManager : MonoBehaviour
 {
     
-    public int columns = 8;
-    public int rows = 15;
+    private int columns;
+    private int rows;
 
-    private Count obstacleCount = new Count(5, 9);
+    private int obstacleCount;
     [SerializeField] private GameObject exit;
     [SerializeField] private GameObject[] floorTiles;
     [SerializeField] private GameObject[] obstacleTiles;
@@ -19,6 +19,7 @@ public class BoardManager : MonoBehaviour
 
     private Transform boardHolder;
     private List<Vector2> gridPositions = new List<Vector2>();
+   
 
     private void InitialList()
     {
@@ -36,7 +37,9 @@ public class BoardManager : MonoBehaviour
     private void BoardSetup()
     {
         boardHolder = new GameObject("Board").transform;
-
+        rows = Random.Range(8, 15);
+        columns = Random.Range(8, 15);
+        obstacleCount = rows * columns / 9;
         for (int x = -1; x < columns + 1; x++)
         {
             for (int y = -1; y < rows + 1; y++)
@@ -52,7 +55,6 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
-
     private Vector2 RandomPosition()
     {
         int randomIndex = Random.Range(0, gridPositions.Count);
@@ -78,16 +80,17 @@ public class BoardManager : MonoBehaviour
 
     public void SetupScene(int level)
     {
-        int enemyCount = (int)Mathf.Log(level, 2f);
+        int enemyCount;
+        enemyCount = (rows *columns) / 9;
+        Debug.Log("enemies = " + enemyCount);
 
         BoardSetup();
 
         InitialList();
 
-        LayoutObjectAtRandom(obstacleTiles, obstacleCount.minimum, obstacleCount.maximum);
+        LayoutObjectAtRandom(obstacleTiles, obstacleCount, obstacleCount);
         LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
         Instantiate(exit, new Vector2(columns - 1, rows - 1), Quaternion.identity);
-
 
     }
     void Start()
@@ -100,16 +103,5 @@ public class BoardManager : MonoBehaviour
     {
         
     }
-    [Serializable]
-    public class Count
-    {
-        public int minimum;
-        public int maximum;
-
-        public Count(int min, int max)
-        {
-            minimum = min;
-            maximum = max;
-        }
-    }
+   
 }

@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance = null;
+
+    [SerializeField] private int level = 1;
     private float levelStartDelay = 2f;
     private bool doingSetup;
-    public static GameManager instance = null;
     private BoardManager boardScript;
-    [SerializeField] private int level = 1;
+    private Text levelText;
+    private GameObject levelImage;
+
     void Awake()
     {
         if (instance == null)
@@ -31,6 +36,20 @@ public class GameManager : MonoBehaviour
     private void InitGame()
     {
         doingSetup = true;
+
+        levelImage = GameObject.Find("LevelImage");
+        levelText = GameObject.Find("LevelText").GetComponent<Text>();
+
+        levelText.text = "Уровень " + level;
+        levelImage.SetActive(true);
+        Invoke("HideLevelImage", levelStartDelay);
+
         boardScript.SetupScene(level);
     }
+    private void HideLevelImage()
+    {
+        levelImage.SetActive(false);
+        doingSetup = false;
+    }
+    
 }

@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38abbea9ad58e2544bee995c74698e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 15
-  rows: 8
   exit: {fileID: 8132847101169655952, guid: 07796f937cfa8cc4199a659a3ef5b0f7, type: 3}
   floorTiles:
   - {fileID: 4967110303819007105, guid: 0813f6169b089c0448941986f838f7bb, type: 3}
@@ -61,6 +59,8 @@ MonoBehaviour:
   - {fileID: 1654448967789256959, guid: dd7f4e5cd143b53479bb2be3993521b8, type: 3}
   - {fileID: 9104594641174350966, guid: be93a4d5ab7edc04da4ccf0818fe7888, type: 3}
   enemyTiles:
+  - {fileID: 9153335651378630224, guid: 452d65142c801394eb5503fb35163a6f, type: 3}
+  - {fileID: 1194279173578079288, guid: 850d6eedb3dafa5489978e4ab666f976, type: 3}
   - {fileID: 9153335651378630224, guid: 452d65142c801394eb5503fb35163a6f, type: 3}
   - {fileID: 1194279173578079288, guid: 850d6eedb3dafa5489978e4ab666f976, type: 3}
 --- !u!114 &3404847370138653588
