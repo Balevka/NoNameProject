@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     private RaycastHit2D hit;
     private bool isPlayereHere = false;
     private Vector2 startPos;
-    private float timer = 100000f;
+    
 
 
 
@@ -56,11 +56,7 @@ public class EnemyAI : MonoBehaviour
 
             }
 
-            
-
         }
-
-
 
         if (isPlayereHere)
         {
@@ -78,20 +74,7 @@ public class EnemyAI : MonoBehaviour
         }
 
 
-        
-
-
-
     }
 
-
-    
-
-
-    
-
-
-
-
-    
+  
 }
