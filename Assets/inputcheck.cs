@@ -18,5 +18,9 @@ public class inputcheck : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "TestScene")
                 Application.LoadLevel("Hub");
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 }
