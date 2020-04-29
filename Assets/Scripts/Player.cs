@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public float speed = 2f;
+    public float speed = 3f;
     [SerializeField] internal Animator playerAnimator;
     
     
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private Vector2 mousePos;
     [SerializeField] private Camera cam;
-    private float restartLevelDelay = 2f;
 
 
 
@@ -32,14 +31,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        rb.velocity = Movement();        
-        
+        rb.velocity = Movement();
     }
 
-    private void Restart()
-    {
-        Application.LoadLevel(Application.loadedLevel);
-    }
+    
 
 
 
@@ -47,6 +42,12 @@ public class Player : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
+
+        
+        if(movement.x < 0)
+        {
+            
+        }
 
         return new Vector2(movement.x * speed, movement.y * speed);
         
@@ -62,27 +63,6 @@ public class Player : MonoBehaviour
         return angle;
     }
 
-    private void AnimationSwitch()
-    {
-        Debug.Log(playerAnimator.GetCurrentAnimatorStateInfo(0));
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Exit"))
-        {
-            Invoke("Restart", restartLevelDelay);
-            enabled = false;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-    }
+    
+  
+}
