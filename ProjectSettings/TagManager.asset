@@ -26,7 +26,7 @@ TagManager:
   - Light
   - Enemy
   - Bullet
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -56,8 +56,14 @@ TagManager:
   - name: Wall
     uniqueID: 3331692321
     locked: 0
+  - name: Obstacle
+    uniqueID: 4045210737
+    locked: 0
   - name: Item
     uniqueID: 635469653
+    locked: 0
+  - name: Enemy
+    uniqueID: 3475756573
     locked: 0
   - name: Player
     uniqueID: 3372346619

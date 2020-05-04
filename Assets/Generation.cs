@@ -38,7 +38,9 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private int roomRate = 15;
     [SerializeField]
-    private int obstacleRate = 30;
+    private int obstacleRate =45;
+    [SerializeField]
+    private int enemyRate = 30;
     [SerializeField]
     private int maxRouteLength;
     [SerializeField]
@@ -83,9 +85,9 @@ public class Generation : MonoBehaviour
     private void FillWalls()
     {
         BoundsInt bounds = groundMap.cellBounds;
-        for (int xMap = bounds.xMin - 1; xMap <= bounds.xMax; xMap++)
+        for (int xMap = bounds.xMin - 11; xMap <= bounds.xMax + 10; xMap++)
         {
-            for (int yMap = bounds.yMin - 1; yMap <= bounds.yMax; yMap++)
+            for (int yMap = bounds.yMin - 11; yMap <= bounds.yMax + 10; yMap++)
             {
                 Vector3Int pos = new Vector3Int(xMap, yMap, 0);
                 Vector3Int posAbove = new Vector3Int(xMap, yMap + 1, 0);
@@ -130,9 +132,9 @@ public class Generation : MonoBehaviour
             {
                 //Initialize
                 bool routeUsed = false;
-                int xOffset = x - previousPos.x; 
-                int yOffset = y - previousPos.y; 
-                int roomSize = 1; 
+                int xOffset = x - previousPos.x;
+                int yOffset = y - previousPos.y;
+                int roomSize = 1;
                 if (Random.Range(1, 100) <= roomRate)
                     roomSize = Random.Range(3, 6);
                 previousPos = new Vector2Int(x, y);
@@ -216,23 +218,35 @@ public class Generation : MonoBehaviour
                 groundMap.SetTile(tilePos, groundTile);
             }
         }
-        if(radius == 1)
+        if (radius == 1)
         {
-            if (Random.Range(1, 100) <= obstacleRate)
+            if (Random.Range(0, 100) <= obstacleRate)
+            {
+                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
+                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
+                    Quaternion.identity);
+            }
+            if (Random.Range(0, 100) <= enemyRate)
             {
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
             }
         }
-        else if(radius > 1)
+        else if (radius > 2)
         {
-            for(int i = 0; i< Random.Range(1, radius + 3); i++)
+            for (int i = 0; i < Random.Range(1, radius + 3); i++)
             {
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
+            }
 
+            for (int i = 0; i < Random.Range(3, radius); i++)
+            {
+                Instantiate(enemy,
+                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
+                    Quaternion.identity);
             }
         }
     }
