@@ -3,7 +3,21 @@ guid: b8e43d38e3d27cc41891e836fcdbb649
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - groundTile: {instanceID: 0}
+  - pitTile: {instanceID: 0}
+  - topWallTile: {instanceID: 0}
+  - bottomWallTile: {instanceID: 0}
+  - leftWallTile: {instanceID: 0}
+  - rightWallTile: {instanceID: 0}
+  - groundMap: {instanceID: 0}
+  - pitMap: {instanceID: 0}
+  - wallMap: {instanceID: 0}
+  - player: {instanceID: 0}
+  - enemy: {instanceID: 0}
+  - exit: {instanceID: 0}
+  - text: {instanceID: 0}
+  - notWalk: {fileID: 11400000, guid: af631c834df088f47bd7234c43ef7a2b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
