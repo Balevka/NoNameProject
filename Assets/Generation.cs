@@ -44,6 +44,15 @@ public class Generation : MonoBehaviour
 
     private int routeCount = 0;
 
+    // PathFinding
+    [SerializeField]
+    private Tile notWalk;
+    private int countTiles = 0;
+    private Vector3 startPos;
+    private PathfindingSystem pathfinding;
+    private List<Vector3Int> propPositionsList = new List<Vector3Int>();
+   
+
     private void Start()
     {
         seed = Random.Range(0, 1000000000);
@@ -58,9 +67,25 @@ public class Generation : MonoBehaviour
         NewRoute(x, y, routeLength, previousPos);
 
         FillWalls();
+        
+        pathfinding = new PathfindingSystem(pitMap.size.x, pitMap.size.y, 1f, startPos, false);
+
+
+        foreach(Vector3Int pos in propPositionsList)
+        {
+            pathfinding.Grid.GetCellIndex(pos, out int xp, out int yp);
+            pathfinding.GetNode(xp, yp).IsWalkable = false;
+            //pitMap.SetTile(pos, notWalk);
+        }
+        
         //Instantiate(exit, new Vector2(x, y), Quaternion.identity);
         player.transform.position = new Vector2(0.5f, 1f);
         text.text = "seed: " + seed;
+
+        Debug.Log(countTiles);
+        Debug.Log(propPositionsList.Count + "fdfdfd");
+
+        
     }
 
     private void FillWalls()
@@ -71,6 +96,12 @@ public class Generation : MonoBehaviour
             for (int yMap = bounds.yMin - 10; yMap <= bounds.yMax + 10; yMap++)
             {
                 Vector3Int pos = new Vector3Int(xMap, yMap, 0);
+
+                if(startPos == Vector3.zero)
+                {
+                    startPos = pos;
+                    
+                }
                 Vector3Int posAbove = new Vector3Int(xMap, yMap + 1, 0);
                 Vector3Int posBelow = new Vector3Int(xMap, yMap - 1, 0);
                 Vector3Int posBefore = new Vector3Int(xMap - 1, yMap, 0);
@@ -82,22 +113,30 @@ public class Generation : MonoBehaviour
                 TileBase tileAfter = groundMap.GetTile(posAfter);
                 if (tile == null)
                 {
+                    
                     pitMap.SetTile(pos, pitTile);
+                    propPositionsList.Add(pos);
+                    
+
                     if (tileBelow != null)
                     {
                         wallMap.SetTile(pos, topWallTile);
+                        countTiles++;
                     }
                     if (tileBefore != null)
                     {
                         wallMap.SetTile(pos, leftWallTile);
+                        countTiles++;
                     }
                     if (tileAfter != null)
                     {
                         wallMap.SetTile(pos, rightWallTile);
+                        countTiles++;
                     }
                     if (tileAbove != null)
                     {
                         wallMap.SetTile(pos, bottomWallTile);
+                        countTiles++;
                     }
                 }
             }
@@ -116,8 +155,10 @@ public class Generation : MonoBehaviour
                 int xOffset = x - previousPos.x; 
                 int yOffset = y - previousPos.y; 
                 int roomSize = 1; 
+
                 if (Random.Range(1, 100) <= roomRate)
                     roomSize = Random.Range(3, 6);
+
                 previousPos = new Vector2Int(x, y);
 
                 //Go Straight
@@ -182,13 +223,22 @@ public class Generation : MonoBehaviour
 
     private void GenerateSquare(int x, int y, int radius)
     {
+
+        
         for (int tileX = x - radius; tileX <= x + radius; tileX++)
         {
             for (int tileY = y - radius; tileY <= y + radius; tileY++)
             {
                 Vector3Int tilePos = new Vector3Int(tileX, tileY, 0);
                 groundMap.SetTile(tilePos, groundTile);
+                countTiles++;
             }
         }
+
+        
     }
+
+    
+
+    
 }
