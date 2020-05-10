@@ -55,11 +55,12 @@ public class Generation : MonoBehaviour
 
     // PathFinding
     [SerializeField]
-    private Tile notWalk;
+    private GameObject notWalk;
     private int countTiles = 0;
     private Vector3 startPos = Vector3.zero;
     private PathfindingSystem pathfinding;
     private List<Vector3Int> propPositionsList = new List<Vector3Int>();
+    private List<Vector2> obstacleList = new List<Vector2>();
     // PathFindig
 
     private int routeCount = 0;
@@ -95,6 +96,19 @@ public class Generation : MonoBehaviour
             pathfinding.Grid.GetCellIndex(pos, out int xp, out int yp);
             pathfinding.GetNode(xp, yp).IsWalkable = false;
             //pitMap.SetTile(pos, notWalk);
+        }
+
+        Debug.Log(obstacleList.Count);
+
+        foreach(Vector2 pos in obstacleList)
+        {
+            
+            pathfinding.Grid.GetCellIndex(pos, out int xo, out int yo);
+            
+            
+            pathfinding.GetNode(xo, yo).IsWalkable = false;
+            Instantiate(notWalk, pos, Quaternion.identity);
+            
         }
         // PathFinding
 
@@ -242,6 +256,8 @@ public class Generation : MonoBehaviour
 
     private void GenerateSquare(int x, int y, int radius)
     {
+        Vector3 obstaclePos;
+
         for (int tileX = x - radius; tileX <= x + radius; tileX++)
         {
             for (int tileY = y - radius; tileY <= y + radius; tileY++)
@@ -254,31 +270,38 @@ public class Generation : MonoBehaviour
         {
             if (Random.Range(0, 100) <= obstacleRate)
             {
-                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
-                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
-                    Quaternion.identity);
+                obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
+
+                obstacleList.Add(obstaclePos);
             }
             if (Random.Range(0, 100) <= enemyRate)
             {
-                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
-                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
-                    Quaternion.identity);
+                obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
+
+                obstacleList.Add(obstaclePos);
             }
         }
         else if (radius > 2)
         {
             for (int i = 0; i < Random.Range(1, radius + 3); i++)
             {
-                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)],
-                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
-                    Quaternion.identity);
+                obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
+
+                obstacleList.Add(obstaclePos);
             }
 
             for (int i = 0; i < Random.Range(3, radius); i++)
             {
+
+
                 Instantiate(enemy,
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
+
+               
             }
         }
     }
