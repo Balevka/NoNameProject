@@ -13,7 +13,7 @@ public class NewAwesomeAI : MonoBehaviour
     private float lookingAngle = 45f;
 
     [SerializeField] 
-    private Transform target;
+    public Transform target;
 
     [SerializeField]
     private LayerMask enemyNotIgnored;
@@ -27,56 +27,34 @@ public class NewAwesomeAI : MonoBehaviour
     private List<Vector3> path;
     private Vector2 startPosition;
     private int currentIndex;
-    
-    
-    
-   
-    
-
-
 
     void Start()
-    {
-        
+    {        
         enemyRb = GetComponent<Rigidbody2D>();
         startPosition = enemyRb.position;
-
-
-
-
     }
 
 
     private void Update()
     {
-        
-
-
-        
-
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-
         if (IsLookingOnPlayer())
         {
             SetTargetPosition(target.position);
         }
 
-
         if (Input.GetMouseButton(1))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             PathfindingSystem.InstancePath.Grid.GetCellIndex(mouseWorldPosition, out int nX, out int nY);
-
             
             Debug.Log(PathfindingSystem.InstancePath.Grid.GetCellPosition(nX, nY));
         }
-
         Movement();
-
     }
 
     private void Movement()

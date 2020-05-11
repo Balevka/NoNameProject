@@ -98,8 +98,6 @@ public class Generation : MonoBehaviour
             //pitMap.SetTile(pos, notWalk);
         }
 
-        Debug.Log(obstacleList.Count);
-
         foreach(Vector2 pos in obstacleList)
         {
             
@@ -107,7 +105,7 @@ public class Generation : MonoBehaviour
             
             
             pathfinding.GetNode(xo, yo).IsWalkable = false;
-            Instantiate(notWalk, pos, Quaternion.identity);
+            //Instantiate(notWalk, pos, Quaternion.identity);
             
         }
         // PathFinding
@@ -257,6 +255,7 @@ public class Generation : MonoBehaviour
     private void GenerateSquare(int x, int y, int radius)
     {
         Vector3 obstaclePos;
+        Vector3 enemyPos;
 
         for (int tileX = x - radius; tileX <= x + radius; tileX++)
         {
@@ -277,10 +276,21 @@ public class Generation : MonoBehaviour
             }
             if (Random.Range(0, 100) <= enemyRate)
             {
-                obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
-                Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
+                enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
 
-                obstacleList.Add(obstaclePos);
+                foreach(Vector3 position in  obstacleList)
+                {
+                    foreach (Vector3 pos in obstacleList)
+                    {
+                        if(enemyPos == pos)
+                        {
+                            enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                        }
+                    }
+                }
+                var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
+                Enemy.GetComponent<NewAwesomeAI>().target = player.transform;
+
             }
         }
         else if (radius > 2)
@@ -295,12 +305,10 @@ public class Generation : MonoBehaviour
 
             for (int i = 0; i < Random.Range(3, radius); i++)
             {
-
-
-                Instantiate(enemy,
+                var Enemy = Instantiate(enemy,
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
-
+                Enemy.GetComponent<NewAwesomeAI>().target = player.transform;
                
             }
         }
