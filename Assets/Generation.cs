@@ -90,6 +90,7 @@ public class Generation : MonoBehaviour
         Random.InitState(int.Parse(resultString));
         seed = Random.Range(0, 1000000000);
         Random.InitState(seed);
+        maxRoutes = Random.Range(30, 150);
         int x = 0;
         int y = 0;
         int routeLength = 0;
@@ -133,7 +134,7 @@ public class Generation : MonoBehaviour
         }
         Instantiate(exit, exitPos, Quaternion.identity);
         player.transform.position = new Vector2(0.5f, 1f);
-        text.text = "seed: " + lastRoomSize;
+        text.text = "seed: " + seed+ " maxRoutes = " + maxRoutes;
     }
 
     private void FillWalls()
