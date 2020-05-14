@@ -62,7 +62,11 @@ public class Player : MonoBehaviour
 
         return angle;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Exit")) 
+            Application.LoadLevel(Application.loadedLevel);
+    }
 
-    
-  
+
 }

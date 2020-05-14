@@ -17,10 +17,18 @@ public class inputcheck : MonoBehaviour
                 Application.LoadLevel("Hub");
             if (SceneManager.GetActiveScene().name == "TestScene")
                 Application.LoadLevel("Hub");
+            if (SceneManager.GetActiveScene().name == "TestScene")
+                Application.LoadLevel("Hub");
+            if (SceneManager.GetActiveScene().name == "Dungeon")
+                Application.LoadLevel("Hub");
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             Application.LoadLevel(Application.loadedLevel);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Application.LoadLevel("Dungeon");
         }
     }
 }

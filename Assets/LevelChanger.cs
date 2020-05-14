@@ -25,7 +25,7 @@ public class LevelChanger : MonoBehaviour
         }
         if (collision.CompareTag("Random"))
         {
-            Application.LoadLevel("Random");
+            Application.LoadLevel("Dungeon");
         }
     }
     private void LoadImage(string level)

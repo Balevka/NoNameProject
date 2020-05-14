@@ -197,10 +197,10 @@ MonoBehaviour:
   enemy: {fileID: 3623990639104961097, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8, type: 3}
   exit: {fileID: 4967110303819007105, guid: 0813f6169b089c0448941986f838f7bb, type: 3}
   deviationRate: 10
-  roomRate: 10
-  obstacleRate: 50
-  enemyRate: 60
-  maxRouteLength: 100
+  roomRate: 100
+  obstacleRate: 40
+  enemyRate: 35
+  maxRouteLength: 10
   maxRoutes: 10
   text: {fileID: 1971500389}
   notWalk: {fileID: 5346606933802536904, guid: 2dedc2a6c90f0524899e507a2c76aaca, type: 3}

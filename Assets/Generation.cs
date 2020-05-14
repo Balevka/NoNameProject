@@ -38,7 +38,7 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private int roomRate = 15;
     [SerializeField]
-    private int obstacleRate =45;
+    private int obstacleRate = 45;
     [SerializeField]
     private int enemyRate = 30;
     [SerializeField]
@@ -50,7 +50,10 @@ public class Generation : MonoBehaviour
     private int seed = 0;
     private int lastX;
     private int lastY;
+    private int lastRoomObstacles = 0;
+    private int lastRoomSize = 0;
     private List<Vector2> gridPositions = new List<Vector2>();
+    private Vector2 exitPos;
 
 
     // PathFinding
@@ -63,6 +66,16 @@ public class Generation : MonoBehaviour
     private List<Vector2> obstacleList = new List<Vector2>();
     // PathFindig
 
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Tilde))
+        {
+            if (text.IsActive())
+                text.gameObject.SetActive(false);
+            else
+                text.gameObject.SetActive(true);
+        }
+    }
     private int routeCount = 0;
 
     private void Start()
@@ -98,21 +111,29 @@ public class Generation : MonoBehaviour
             //pitMap.SetTile(pos, notWalk);
         }
 
-        foreach(Vector2 pos in obstacleList)
+        foreach (Vector2 pos in obstacleList)
         {
-            
+
             pathfinding.Grid.GetCellIndex(pos, out int xo, out int yo);
-            
-            
+
+
             pathfinding.GetNode(xo, yo).IsWalkable = false;
             //Instantiate(notWalk, pos, Quaternion.identity);
-            
+
         }
         // PathFinding
-
-        Instantiate(exit, new Vector2(lastX + 0.5f, lastY + 0.5f), Quaternion.identity);
+        exitPos = new Vector2(lastX + 0.5f, lastY + 0.5f);
+        for (int i = obstacleList.Count - lastRoomObstacles; i < obstacleList.Count; i++)
+        {
+            for (int j = obstacleList.Count - lastRoomObstacles; j < obstacleList.Count; j++)
+            {
+                if (exitPos == obstacleList[j])
+                    exitPos = new Vector2(Random.Range(lastX - lastRoomSize, lastX + lastRoomSize + 1) + 0.5f, Random.Range(lastY - lastRoomSize, lastY + lastRoomSize + 1) + 0.5f);
+            }
+        }
+        Instantiate(exit, exitPos, Quaternion.identity);
         player.transform.position = new Vector2(0.5f, 1f);
-        text.text = "seed: " + seed;
+        text.text = "seed: " + lastRoomSize;
     }
 
     private void FillWalls()
@@ -159,9 +180,6 @@ public class Generation : MonoBehaviour
                     {
                         wallMap.SetTile(pos, bottomWallTile);
                     }
-
-                    
-
                 }
             }
         }
@@ -254,6 +272,7 @@ public class Generation : MonoBehaviour
 
     private void GenerateSquare(int x, int y, int radius)
     {
+        lastRoomSize = radius;
         Vector3 obstaclePos;
         Vector3 enemyPos;
 
@@ -273,16 +292,18 @@ public class Generation : MonoBehaviour
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
 
                 obstacleList.Add(obstaclePos);
+                lastRoomObstacles = 0;
             }
+
             if (Random.Range(0, 100) <= enemyRate)
             {
                 enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
 
-                foreach(Vector3 position in  obstacleList)
+                foreach (Vector3 position in obstacleList)
                 {
                     foreach (Vector3 pos in obstacleList)
                     {
-                        if(enemyPos == pos)
+                        if (enemyPos == pos)
                         {
                             enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                         }
@@ -295,12 +316,14 @@ public class Generation : MonoBehaviour
         }
         else if (radius > 2)
         {
+            lastRoomObstacles = 0;
             for (int i = 0; i < Random.Range(1, radius + 3); i++)
             {
                 obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
 
                 obstacleList.Add(obstaclePos);
+                ++lastRoomObstacles;
             }
 
             for (int i = 0; i < Random.Range(3, radius); i++)
@@ -309,7 +332,7 @@ public class Generation : MonoBehaviour
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
                 Enemy.GetComponent<NewAwesomeAI>().target = player.transform;
-               
+
             }
         }
     }
