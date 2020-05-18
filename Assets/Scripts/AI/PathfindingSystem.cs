@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 
 public class PathfindingSystem
 {
+  
     
-
     // Константы передвижения
     public const int MOVE_STRAIGHT_COST = 10;
     public const int MOVE_DIAGONAL_COST = 14;
@@ -153,8 +154,6 @@ public class PathfindingSystem
 
         return null;
     }
-
-    
     //---------------------------------------------------------------------------
 
     // Рассчитывает дистанцию между узлами отнносительно их стоимости перемещения и направления
