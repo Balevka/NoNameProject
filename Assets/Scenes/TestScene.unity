@@ -7382,7 +7382,7 @@ MonoBehaviour:
   width: 20
   height: 10
   cellSize: 1
-  debugMode: 0
+  debugMode: 1
 --- !u!4 &1081916544
 Transform:
   m_ObjectHideFlags: 0
