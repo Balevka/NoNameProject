@@ -339,16 +339,15 @@ public class Generation : MonoBehaviour
         }
         if (radius == 1)
         {
-            if (Random.Range(0, 100) <= obstacleRate)
+            if (Random.Range(0, 35) <= obstacleRate)
             {
                 obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
 
                 obstacleList.Add(obstaclePos);
-                lastRoomObstacles = 0;
             }
 
-            if (Random.Range(0, 100) <= enemyRate)
+            if (Random.Range(0, 25) <= enemyRate)
             {
                 enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
 
@@ -368,7 +367,6 @@ public class Generation : MonoBehaviour
         }
         else if (radius > 2)
         {
-            lastRoomObstacles = 0;
             for (int i = 0; i < Random.Range(1, radius); i++)
             {
                 obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
@@ -384,10 +382,9 @@ public class Generation : MonoBehaviour
                     }
                 }
                 obstacleList.Add(obstaclePos);
-                ++lastRoomObstacles;
             }
 
-            for (int i = 0; i < Random.Range(3, radius); i++)
+            for (int i = 0; i < Random.Range(2, radius-1); i++)
             {
                 var Enemy = Instantiate(enemy,
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
