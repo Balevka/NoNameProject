@@ -22,6 +22,7 @@ public class CameraMovement : MonoBehaviour
         camera.position = new Vector3(player.position.x, player.position.y, camera.position.z);
         settings = this.GetComponent<CameraSettings>();
         Cursor.SetCursor(settings.cursorImage,Vector2.zero, CursorMode.Auto);
+
         
     }
 
@@ -29,6 +30,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
 
         if (isCameraMove) 
         {

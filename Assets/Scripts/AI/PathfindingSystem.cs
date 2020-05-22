@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 
 public class PathfindingSystem
 {
+  
     
-
     // Константы передвижения
     public const int MOVE_STRAIGHT_COST = 10;
     public const int MOVE_DIAGONAL_COST = 14;
@@ -19,6 +20,10 @@ public class PathfindingSystem
 
     // Список проверенных узлов
     private List<Node> closeList;
+
+
+    // Список мест для повторной проверки
+    private List<Node> maybeList;
 
     
     // Текст для отладки
@@ -41,11 +46,12 @@ public class PathfindingSystem
         InstancePath = this;
         DebugMode = debugMode;
         grid = new GridSystem<Node>(width, height, cellSize, position, (int x, int y) => new Node(x, y), DebugMode);
-        /*
+        
+
         debugTextArrayH = new List<TextMesh>();
         debugTextArrayG = new List<TextMesh>();
         debugTextArrayF = new List<TextMesh>();
-        */
+        
     }
 
 
@@ -79,6 +85,8 @@ public class PathfindingSystem
                 node.G = 0;
                 node.ParentNode = null;
             }
+
+        ClearText();
 
 
         // Установка значений стартовой точки
@@ -153,8 +161,6 @@ public class PathfindingSystem
 
         return null;
     }
-
-    
     //---------------------------------------------------------------------------
 
     // Рассчитывает дистанцию между узлами отнносительно их стоимости перемещения и направления
@@ -240,7 +246,6 @@ public class PathfindingSystem
         
         List<Node> pathNodeList = new List<Node>() { endNode };
         Node currentNode = endNode;
-        int i = 0;
         while(currentNode.ParentNode != null)
         {
             pathNodeList.Add(currentNode.ParentNode);
@@ -253,19 +258,45 @@ public class PathfindingSystem
         return pathNodeList;
     }
 
+    
+
 
     // Устанавливает текст для дебага
     private  void SetDebugTextForNode(int x, int y)
     {
         if (DebugMode)
         {
-            DebugTools.CreateText("F " + GetNode(x, y).F, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * (grid.CellSize / 2), Color.white, TextAnchor.MiddleCenter);
-            DebugTools.CreateText("H " + GetNode(x, y).H, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * ((grid.CellSize / 2) + 0.2f), Color.white, TextAnchor.LowerRight);
-            DebugTools.CreateText("G " + GetNode(x, y).G, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * ((grid.CellSize / 2) + 0.2f), Color.white, TextAnchor.LowerLeft);
+            debugTextArrayF.Add(DebugTools.CreateText("F " + GetNode(x, y).F, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * (grid.CellSize / 2), Color.white, TextAnchor.MiddleCenter));
+            debugTextArrayH.Add(DebugTools.CreateText("H " + GetNode(x, y).H, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * ((grid.CellSize / 2) + 0.2f), Color.white, TextAnchor.LowerRight));
+            debugTextArrayG.Add(DebugTools.CreateText("G " + GetNode(x, y).G, 0.1f, grid.GetCellPosition(x, y) + Vector3.one * ((grid.CellSize / 2) + 0.2f), Color.white, TextAnchor.LowerLeft));
 
         }
 
 
+    }
+
+    public void ClearText()
+    {
+        foreach(TextMesh tm in debugTextArrayF)
+        {
+            Object.Destroy(tm);
+        }
+
+        foreach (TextMesh tm in debugTextArrayG)
+        {
+            Object.Destroy(tm);
+        }
+
+        foreach (TextMesh tm in debugTextArrayH)
+        {
+            Object.Destroy(tm);
+        }
+
+
+
+        debugTextArrayF.Clear();
+        debugTextArrayH.Clear();
+        debugTextArrayG.Clear();
     }
 
 
