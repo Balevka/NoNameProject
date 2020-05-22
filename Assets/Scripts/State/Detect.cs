@@ -6,12 +6,16 @@ public class Detect : IState
 {
     public Enemy Enemy { get; set; }
 
+    
+
     public void HandleState(Enemy enemy)
     {
-        Debug.Log($"{enemy.name} :: Обнаружен");
+        Enemy = enemy;
+
+        Debug.Log($"{Enemy.name} :: Обнаружен");
 
 
-        enemy.State = new Following();
+        Enemy.State = new Following();
     }
 
     

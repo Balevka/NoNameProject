@@ -1,48 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class Following : IState
 {
-    private Enemy Enemy { get; set; }
+    public Enemy Enemy { get; set; }
     
+    
+
+
+
+
 
     public void HandleState(Enemy enemy)
     {
         Enemy = enemy;
-
-        Debug.Log($"{enemy.name} :: Преследование!");
-
-        if (enemy.IsLookingOnPlayer())
+        
+        if (Enemy.IsLookingOnPlayer())
         {
             
-            SetTargetPosition(Enemy.target.position);
+            Debug.Log($"{Enemy.name} :: Преследование!");
+            Enemy.SetTargetPosition(Enemy.target.position);
+
+            
             
         }
+        
+        /*if(!Enemy.IsLookingOnPlayer() && !Enemy.isMoving)
+        {
+            Enemy.State = new FindTarget();
+        }*/
 
-        enemy.RotationForTarget();
+
+        
+            
+        
+
+        Enemy.RotationForTarget();
 
     }
 
-    private void SetTargetPosition(Vector3 targetPos)
-    {
-        Enemy.currentIndex = 0;
-
-        Enemy.path = PathfindingSystem.InstancePath.FindPath(Enemy.startPosition, targetPos);
-
-        for (int i = 0; i < Enemy.path.Count - 1; i++)
-        {
-            Debug.DrawLine(Enemy.path[i], Enemy.path[i + 1], Color.green, 10f);
-        }
-
-        if (Enemy.path != null && Enemy.path.Count > 1)
-        {
-            Enemy.path.RemoveAt(0);
-
-        }
-    }
-
-    
-
-    
+   
 }

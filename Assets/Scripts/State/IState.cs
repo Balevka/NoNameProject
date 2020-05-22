@@ -1,4 +1,5 @@
-﻿public interface IState
+﻿
+public interface IState
 {
     void HandleState(Enemy enemy);
 }

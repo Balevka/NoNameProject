@@ -10,10 +10,10 @@ public class Calm : IState
     {
         Enemy = enemy;
 
-        Debug.Log($"{enemy.name} :: Нахожусь в спокойствии");
-        if (enemy.IsLookingOnPlayer())
+        Debug.Log($"{Enemy.name} :: Нахожусь в спокойствии");
+        if(Enemy.IsLookingOnPlayer())
         {
-            enemy.State = new Detect();
+            Enemy.State = new Detect();
         }
     }
 

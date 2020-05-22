@@ -48,12 +48,16 @@ public class Enemy : MonoBehaviour
 
     internal Rigidbody2D enemyRb;
     private float healthPart;
+    public bool isMoving;
     
 
     // Установка значений
     void Start()
     {
+        
         State = new Calm();
+        
+
         healthPart = 2 / health;
         enemyRb = GetComponent<Rigidbody2D>();
         startPosition = enemyRb.position; 
@@ -94,7 +98,7 @@ public class Enemy : MonoBehaviour
 
                 if (IsDead())
                 {
-                    Destroy(gameObject);
+                    State = new Death();      
                 }
 
                 break;
@@ -121,7 +125,7 @@ public class Enemy : MonoBehaviour
 
         if (path != null)
         {
-
+            isMoving = true;
 
             Vector2 targetPosition = path[currentIndex];
 
@@ -140,7 +144,7 @@ public class Enemy : MonoBehaviour
                 startPosition = path[currentIndex];
                 currentIndex++;
                 if (currentIndex >= path.Count)
-                    path = null;
+                    StopMoving();
             }
 
 
@@ -165,6 +169,8 @@ public class Enemy : MonoBehaviour
     public void StopMoving()
     {
         path = null;
+        isMoving = false;
+        
     }
 
     public Vector3 GetPosition()
@@ -172,5 +178,21 @@ public class Enemy : MonoBehaviour
         return transform.position;
     }
 
+    public void SetTargetPosition(Vector3 targetPos)
+    {
+        currentIndex = 0;
 
+        path = PathfindingSystem.InstancePath.FindPath(startPosition, targetPos);
+
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            Debug.DrawLine(path[i], path[i + 1], Color.green, 10f);
+        }
+
+        if (path != null && path.Count > 1)
+        {
+            path.RemoveAt(0);
+
+        }
+    }
 }
