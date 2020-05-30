@@ -362,7 +362,7 @@ public class Generation : MonoBehaviour
                     }
                 }
                 var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
-                Enemy.GetComponent<NewAwesomeAI>().target = player.transform;
+                Enemy.GetComponent<Enemy>().target = player.transform;
             }
         }
         else if (radius > 2)
@@ -389,7 +389,7 @@ public class Generation : MonoBehaviour
                 var Enemy = Instantiate(enemy,
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
                     Quaternion.identity);
-                Enemy.GetComponent<NewAwesomeAI>().target = player.transform;
+                Enemy.GetComponent<Enemy>().target = player.transform;
             }
         }
     }

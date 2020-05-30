@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class GridSettings : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GridSettings : MonoBehaviour
 
     [SerializeField]
     private bool debugMode = false;
+
+    [SerializeField]
+    private Node[] nodes;
     
     void Start()
     {

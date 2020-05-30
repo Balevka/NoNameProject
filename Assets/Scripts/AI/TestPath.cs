@@ -24,7 +24,7 @@ public class TestPath : MonoBehaviour
         
 
 
-        system = new PathfindingSystem(10, 10, 2f, transform.position, false);
+        system = new PathfindingSystem(10, 10, 2f, transform.position, true);
         Debug.Log(PathfindingSystem.InstancePath.Grid.CellSize);
         system.GetNode(4, 2).IsWalkable = false;
         system.GetNode(4, 3).IsWalkable = false;
@@ -49,6 +49,15 @@ public class TestPath : MonoBehaviour
 
 
 
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+        }
     }
 
     // Update is called once per frame
