@@ -384,7 +384,7 @@ public class Generation : MonoBehaviour
                 obstacleList.Add(obstaclePos);
             }
 
-            for (int i = 0; i < Random.Range(2, radius-1); i++)
+            for (int i = 0; i < Random.Range(1, radius-2); i++)
             {
                 var Enemy = Instantiate(enemy,
                     new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),

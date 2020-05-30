@@ -210,7 +210,7 @@ MonoBehaviour:
   enemy: {fileID: 3623990639104961097, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8, type: 3}
   exit: {fileID: 1629776027}
   deviationRate: 15
-  roomRate: 15
+  roomRate: 12
   obstacleRate: 40
   enemyRate: 35
   maxRouteLength: 50
@@ -408,9 +408,9 @@ RectTransform:
   m_Father: {fileID: 1106740207}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -434.3, y: 300.8}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 227.5, y: -16.5}
   m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309179863
