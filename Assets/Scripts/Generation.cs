@@ -339,7 +339,7 @@ public class Generation : MonoBehaviour
         }
         if (radius == 1)
         {
-            if (Random.Range(0, 35) <= obstacleRate)
+            if (Random.Range(0, 20) <= obstacleRate)
             {
                 obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
@@ -350,16 +350,9 @@ public class Generation : MonoBehaviour
             if (Random.Range(0, 25) <= enemyRate)
             {
                 enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
-
-                foreach (Vector3 position in obstacleList)
+                while (obstacleList.Contains(enemyPos))
                 {
-                    foreach (Vector3 pos in obstacleList)
-                    {
-                        if (enemyPos == pos)
-                        {
-                            enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
-                        }
-                    }
+                    enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 }
                 var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
                 Enemy.GetComponent<Enemy>().target = player.transform;
@@ -371,24 +364,21 @@ public class Generation : MonoBehaviour
             {
                 obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
-                foreach (Vector3 position in obstacleList)
+                while(obstacleList.Contains(obstaclePos))
                 {
-                    foreach (Vector3 pos in obstacleList)
-                    {
-                        if (obstaclePos == pos)
-                        {
-                            obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
-                        }
-                    }
+                    obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                 }
                 obstacleList.Add(obstaclePos);
             }
 
             for (int i = 0; i < Random.Range(1, radius-2); i++)
             {
-                var Enemy = Instantiate(enemy,
-                    new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f),
-                    Quaternion.identity);
+                enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                while (obstacleList.Contains(enemyPos))
+                {
+                    enemyPos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
+                }
+                var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
                 Enemy.GetComponent<Enemy>().target = player.transform;
             }
         }
