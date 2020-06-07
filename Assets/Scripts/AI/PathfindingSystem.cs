@@ -119,7 +119,6 @@ public class PathfindingSystem
 
                 neighbourNode.G = currentNode.G + CalculateDistanceBetweenNodes(currentNode, neighbourNode);
 
-
                 if ((openList.Contains(neighbourNode) && neighbourNode.G < currentNode.G) || !openList.Contains(neighbourNode))
                 {
                     neighbourNode.ParentNode = currentNode;

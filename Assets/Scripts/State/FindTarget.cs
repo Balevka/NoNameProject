@@ -23,10 +23,7 @@ public class FindTarget : IState
         
         
 
-        while(i != 2)
-        {
-            Enemy.SetTargetPosition(system.Grid.GetCellPosition(GetSearchZone()[0].GridIndexX, GetSearchZone()[0].GridIndexY));
-        }
+        
        
 
         
