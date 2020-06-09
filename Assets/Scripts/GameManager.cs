@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         {
             seed = PlayerPrefs.GetInt("loadedSeed");
             PlayerPrefs.SetInt("seed", seed);
+            SceneManager.LoadScene("Dungeon");
         }
         else
         {
@@ -93,8 +94,8 @@ public class GameManager : MonoBehaviour
         if (seedAcceptable)
         {
             PlayerPrefs.SetInt("loadedSeed", Int32.Parse(input.text));
-            Debug.Log(PlayerPrefs.GetInt("loadedSeed"));
             LoadGame();
+            Debug.Log(PlayerPrefs.GetInt("loadedSeed"));
         }
     }
     public void InputChecker()
