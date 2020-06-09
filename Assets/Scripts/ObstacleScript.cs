@@ -20,13 +20,26 @@ public class ObstacleScript : MonoBehaviour
     {
         if (hp <= 0 && breakable)
         {
+            Destroy(gameObject);
             grid.GetComponent<Generation>().obstacleList.Remove(obstaclePosition);
-
-            Destroy(this);
         }
+
     }
     public void HpLoss()
     {
-        hp--;
+        if (breakable)
+        {
+            hp--;
+            Debug.Log(hp);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.layer)
+        {
+            case 14:
+                HpLoss(); 
+                break;
+        }
     }
 }

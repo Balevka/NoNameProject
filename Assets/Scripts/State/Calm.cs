@@ -10,7 +10,7 @@ public class Calm : IState
     {
         Enemy = enemy;
 
-        Debug.Log($"{Enemy.name} :: Нахожусь в спокойствии");
+        //Debug.Log($"{Enemy.name} :: Нахожусь в спокойствии");
         if(Enemy.IsLookingOnPlayer())
         {
             Enemy.State = new Detect();

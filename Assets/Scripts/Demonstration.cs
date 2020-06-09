@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class Generation : MonoBehaviour
+public class Demonstration : MonoBehaviour
 {
     [SerializeField]
     private Grid grid;
@@ -90,9 +90,14 @@ public class Generation : MonoBehaviour
 
     public int Seed { get => seed;}
 
-
     private void Start()
     {
+        StartCoroutine(Create());
+    }
+
+    private IEnumerator Create()
+    {
+        yield return new WaitForSeconds(1);
         CreateSeed();
         if(PlayerPrefs.HasKey("seed"))
         {
@@ -109,10 +114,11 @@ public class Generation : MonoBehaviour
         Vector2Int previousPos = new Vector2Int(x, y);
         y += 3;
         GenerateSquare(x, y, 1);
-        NewRoute(x, y, routeLength, previousPos);
+        StartCoroutine(NewRoute(x, y, routeLength, previousPos));
         FillWalls();
         PathFinding();
 
+        yield return new WaitForSeconds(1);
         exitPos = new Vector2(lastX + 0.5f, lastY + 0.5f);
         while (obstacleList.Contains(exitPos))
         {
@@ -122,7 +128,6 @@ public class Generation : MonoBehaviour
         player.transform.position = new Vector2(0.5f, 1f);
         text.text = "seed: " + seed + " maxRoutes = " + maxRoutes + " " + level;
         PlayerPrefs.SetInt("seed", 0);
-        PlayerPrefs.SetInt("loadedSeed", 0);
     }
   
     private void CreateSeed()
@@ -135,7 +140,7 @@ public class Generation : MonoBehaviour
                 resultString += datetime[i];
         }
         Random.InitState(int.Parse(resultString));
-        seed = Random.Range(10000, 999999999);
+        seed = Random.Range(0, 1000000000);
     }
 
     private void PathFinding()
@@ -155,7 +160,7 @@ public class Generation : MonoBehaviour
         }
     }
 
-    private void FillWalls()
+    private IEnumerator FillWalls()
     {
 
         BoundsInt bounds = groundMap.cellBounds;
@@ -163,6 +168,8 @@ public class Generation : MonoBehaviour
         {
             for (int yMap = bounds.yMin - 11; yMap <= bounds.yMax + 10; yMap++)
             {
+
+                yield return new WaitForSeconds(0.01f);
                 Vector3Int pos = new Vector3Int(xMap, yMap, 0);
 
                 if (startPos == Vector3.zero)
@@ -250,13 +257,14 @@ public class Generation : MonoBehaviour
         }
     }
 
-    private void NewRoute(int x, int y, int routeLength, Vector2Int previousPos)
+    private IEnumerator NewRoute(int x, int y, int routeLength, Vector2Int previousPos)
     {
         if (routeCount < maxRoutes)
         {
             routeCount++;
             while (++routeLength < maxRouteLength)
             {
+                yield return new WaitForSeconds(0.5f);
                 //Initialize
                 bool routeUsed = false;
                 int xOffset = x - previousPos.x;
@@ -272,7 +280,7 @@ public class Generation : MonoBehaviour
                     if (routeUsed)
                     {
                         GenerateSquare(previousPos.x + xOffset, previousPos.y + yOffset, roomSize);
-                        NewRoute(previousPos.x + xOffset, previousPos.y + yOffset, Random.Range(routeLength, maxRouteLength), previousPos);
+                        StartCoroutine(NewRoute(previousPos.x + xOffset, previousPos.y + yOffset, Random.Range(routeLength, maxRouteLength), previousPos));
                     }
                     else
                     {
@@ -289,7 +297,7 @@ public class Generation : MonoBehaviour
                     if (routeUsed)
                     {
                         GenerateSquare(previousPos.x - yOffset, previousPos.y + xOffset, roomSize);
-                        NewRoute(previousPos.x - yOffset, previousPos.y + xOffset, Random.Range(routeLength, maxRouteLength), previousPos);
+                        StartCoroutine(NewRoute(previousPos.x - yOffset, previousPos.y + xOffset, Random.Range(routeLength, maxRouteLength), previousPos));
                     }
                     else
                     {
@@ -305,7 +313,7 @@ public class Generation : MonoBehaviour
                     if (routeUsed)
                     {
                         GenerateSquare(previousPos.x + yOffset, previousPos.y - xOffset, roomSize);
-                        NewRoute(previousPos.x + yOffset, previousPos.y - xOffset, Random.Range(routeLength, maxRouteLength), previousPos);
+                        StartCoroutine(NewRoute(previousPos.x + yOffset, previousPos.y - xOffset, Random.Range(routeLength, maxRouteLength), previousPos));
                     }
                     else
                     {
@@ -324,11 +332,6 @@ public class Generation : MonoBehaviour
                 }
             }
         }
-    }
-    public void Save()
-    {
-        PlayerPrefs.SetInt("savedSeed", seed);
-        Debug.Log("Saved, seed: " + PlayerPrefs.GetInt("savedSeed"));
     }
 
     private void GenerateSquare(int x, int y, int radius)
@@ -400,4 +403,4 @@ public class Generation : MonoBehaviour
 
         } 
     }
-}   
+}

@@ -20,7 +20,7 @@ public class Following : IState
         if (Enemy.IsLookingOnPlayer())
         {
             
-            Debug.Log($"{Enemy.name} :: Преследование!");
+           // Debug.Log($"{Enemy.name} :: Преследование!");
             Enemy.SetTargetPosition(Enemy.target.position);
 
             

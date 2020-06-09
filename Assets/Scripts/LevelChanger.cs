@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LevelChanger : MonoBehaviour
 {
-
     private float levelStartDelay = 2f;
     private Text levelText;
     private GameObject levelImage;
