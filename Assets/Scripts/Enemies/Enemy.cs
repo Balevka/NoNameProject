@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public  class Enemy : StateMachine
 {
+    #region Сhangeable Fields
     //Здоровье
     [SerializeField] 
     private float health = 10;
@@ -35,38 +36,38 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private bool isPlayerHere = false;
 
-    //Состояние противника
-    internal IState State { get; set; }
+    #endregion
 
-    //Путь
+    #region Pathfinding Fields
     //-------------------------------
     internal List<Vector3> path ;
     internal int currentIndex;
     internal Vector3 startPosition;
     //-------------------------------
-
+    #endregion
 
     internal Rigidbody2D enemyRb;
     private float healthPart;
-    public bool isMoving;
-    
+    private bool isMoving;
+    public Vector3 enemyBeginPosition;
 
     // Установка значений
-    void Start()
+    private void Start()
     {
-        
-        State = new Calm();
         
 
         healthPart = 2 / health;
         enemyRb = GetComponent<Rigidbody2D>();
-        startPosition = enemyRb.position; 
+        startPosition = enemyRb.position;
+        enemyBeginPosition = GetPosition();
+        SetState(new Calm(this));
     }
 
 
     private void Update()
     {
-        State.HandleState(this);
+        
+
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -98,7 +99,7 @@ public class Enemy : MonoBehaviour
 
                 if (IsDead())
                 {
-                    State = new Death();      
+                    SetState(new Death(this));    
                 }
 
                 break;
@@ -109,7 +110,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void GetDamage(float damage)
+    public void GetDamage(float damage)
     {
         health -= damage;
     }
@@ -119,7 +120,7 @@ public class Enemy : MonoBehaviour
         return health <= 0 ? true : false;
     }
 
-    private void Movement()
+    public void Movement()
     {
 
 
@@ -181,6 +182,7 @@ public class Enemy : MonoBehaviour
     public void SetTargetPosition(Vector3 targetPos)
     {
         currentIndex = 0;
+        
 
         path = PathfindingSystem.InstancePath.FindPath(startPosition, targetPos);
 
@@ -194,5 +196,61 @@ public class Enemy : MonoBehaviour
             path.RemoveAt(0);
 
         }
+    }
+
+    public void FindTarget()
+    {
+        if(!isMoving)
+        {
+            PathfindingSystem.InstancePath.Grid.GetCellIndex(GetPosition(), out int x, out int y);
+            
+            List<Node> searchArea = CreateAreaSearch(2, PathfindingSystem.InstancePath.GetNode(x, y));
+            Debug.Log(searchArea.Count);
+            Debug.Log(searchArea[Random.Range(0, searchArea.Count - 1)]);
+            /*Node node;
+
+            SetTargetPosition(PathfindingSystem.InstancePath.Grid.GetCellPosition(node.GridIndexX, node.GridIndexY));
+            */
+        }  
+    }
+
+
+    public List<Node> CreateAreaSearch(int radiusSearch, Node node)
+    {
+
+        if (path != null)
+        {
+
+            /* List<Vector3> pathVectors = path;
+             pathVectors.Reverse();
+             Vector3 lastPosition = pathVectors[0];
+             pathVectors.Clear();*/
+
+            /*Node endNode = PathfindingSystem.InstancePath.Grid.GetCellValue(lastPosition);*/
+
+            List<Node> searchZone = PathfindingSystem.InstancePath.GetNeighboursNodes(node);
+            Debug.Log(searchZone.Count);
+            int countNodes = searchZone.Count;
+
+            for (int i = 0; i < countNodes; i++)
+            {
+                List<Node> neighbourList = PathfindingSystem.InstancePath.GetNeighboursNodes(searchZone[i]);
+
+                foreach (Node n in neighbourList)
+                {
+                    if (!searchZone.Contains(n))
+                    {
+                        searchZone.Add(n);
+                    }
+                }
+            }
+
+            return searchZone;
+
+        }
+
+
+        return null;
+
     }
 }
