@@ -1028,7 +1028,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3523,7 +3523,7 @@ PrefabInstance:
     - target: {fileID: 5515365939267510567, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_TagString
-      value: back
+      value: Demo
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510568, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
@@ -3534,7 +3534,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ce96aa6462620e47ac56eccbb027deb,
+      objectReference: {fileID: -8238466784633781656, guid: 9c72f34f3c5924142b3000b60266fdfd,
         type: 3}
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
@@ -3599,12 +3599,12 @@ PrefabInstance:
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c774065b762f36a4fad9ce73d41c91d8, type: 3}
@@ -5340,7 +5340,7 @@ PrefabInstance:
     - target: {fileID: 5515365939267510567, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_TagString
-      value: Test
+      value: A*
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510568, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
@@ -5351,7 +5351,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ce96aa6462620e47ac56eccbb027deb,
+      objectReference: {fileID: -8238466784633781656, guid: 9c72f34f3c5924142b3000b60266fdfd,
         type: 3}
     - target: {fileID: 5515365939267510568, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
@@ -5431,12 +5431,12 @@ PrefabInstance:
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c774065b762f36a4fad9ce73d41c91d8, type: 3}
@@ -6228,7 +6228,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6675,6 +6675,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerAnimator: {fileID: 965424993}
+  GUI: {fileID: 0}
+  Loss: {fileID: 0}
+  Pause: {fileID: 0}
+  hpBar: {fileID: 0}
   cam: {fileID: 1831523191}
 --- !u!50 &965424996
 Rigidbody2D:
@@ -7183,7 +7187,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9738,11 +9742,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0ce96aa6462620e47ac56eccbb027deb,
+      objectReference: {fileID: -8238466784633781656, guid: 9c72f34f3c5924142b3000b60266fdfd,
         type: 3}
     - target: {fileID: 5515365939267510568, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515365939267510568, guid: c774065b762f36a4fad9ce73d41c91d8,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
@@ -9808,12 +9817,12 @@ PrefabInstance:
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5515365939267510570, guid: c774065b762f36a4fad9ce73d41c91d8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c774065b762f36a4fad9ce73d41c91d8, type: 3}
@@ -13484,7 +13493,7 @@ Camera:
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 2.4943142
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

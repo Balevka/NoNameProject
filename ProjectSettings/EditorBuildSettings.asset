@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: f5989436a999a43498e6096272460742
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene/Random.unity
     guid: 290556058a639404183a8fa749400b7d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 0c06c841324a1a8448c38fbfa38aa3e8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene/KurupapuruRain.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon.unity
     guid: 4d14fecc7340dad4aacfdac11e3671ed
+  - enabled: 1
+    path: Assets/Scenes/Demonstration.unity
+    guid: dfa68bb5fa1a41645bb92c710f99db28
+  - enabled: 1
+    path: Assets/Scenes/TestScene/TestGrid.unity
+    guid: 0cea675c731193545a3f3bfb34663d64
   m_configObjects: {}

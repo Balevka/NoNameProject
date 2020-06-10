@@ -11,6 +11,8 @@ TagManager:
   - Random
   - Test
   - obstacle
+  - Demo
+  - A*
   layers:
   - Default
   - TransparentFX

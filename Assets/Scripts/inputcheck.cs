@@ -13,11 +13,11 @@ public class inputcheck : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Hub")
                 Application.LoadLevel("MainMenu");
-            if (SceneManager.GetActiveScene().name == "Random")
+            if (SceneManager.GetActiveScene().name == "Demonstration")
                 Application.LoadLevel("Hub");
-            if (SceneManager.GetActiveScene().name == "TestScene")
+            if (SceneManager.GetActiveScene().name == "TestGrid")
                 Application.LoadLevel("Hub");
-            if (SceneManager.GetActiveScene().name == "TestScene")
+            if (SceneManager.GetActiveScene().name == "TestGrid")
                 Application.LoadLevel("Hub");
             if (SceneManager.GetActiveScene().name == "Dungeon")
                 Application.LoadLevel("Hub");

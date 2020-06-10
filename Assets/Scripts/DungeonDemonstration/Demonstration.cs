@@ -75,6 +75,14 @@ public class Demonstration : MonoBehaviour
     private Vector2 exitPos;
     public List<Vector2> enemyList = new List<Vector2>();
     private int level = 0;
+    private bool fill = false;
+    private bool filled = false;
+    private int routes = 0;
+    private int xdd = 0;
+    public GameObject camera;
+
+
+
 
 
     // PathFinding
@@ -90,16 +98,28 @@ public class Demonstration : MonoBehaviour
 
     public int Seed { get => seed;}
 
+
     private void Start()
     {
-        StartCoroutine(Create());
+        StartCoroutine(xd());
     }
 
-    private IEnumerator Create()
+    private void LateUpdate()
     {
-        yield return new WaitForSeconds(1);
+        if(fill && xdd == routes)
+        {
+                StartCoroutine(FillWalls());                
+        }
+    }
+    private void FixedUpdate()
+    {
+        camera.transform.position = new Vector3(lastX/2, lastY/2, -10);
+    }
+
+    private IEnumerator xd()
+    {
         CreateSeed();
-        if(PlayerPrefs.HasKey("seed"))
+        if (PlayerPrefs.HasKey("seed"))
         {
             if (PlayerPrefs.GetInt("seed") > 0)
                 seed = PlayerPrefs.GetInt("seed");
@@ -110,26 +130,21 @@ public class Demonstration : MonoBehaviour
         int y = 0;
         int routeLength = 0;
         GenerateSquare(x, y, 1);
-        
         Vector2Int previousPos = new Vector2Int(x, y);
         y += 3;
         GenerateSquare(x, y, 1);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(NewRoute(x, y, routeLength, previousPos));
-        FillWalls();
+        //FillWalls();
         PathFinding();
 
-        yield return new WaitForSeconds(1);
-        exitPos = new Vector2(lastX + 0.5f, lastY + 0.5f);
-        while (obstacleList.Contains(exitPos))
-        {
-            exitPos = new Vector2(Random.Range(lastX - lastRoomSize, lastX + lastRoomSize + 1) + 0.5f, Random.Range(lastY - lastRoomSize, lastY + lastRoomSize + 1) + 0.5f);
-        }
-        exit.transform.position = exitPos;
+        
         player.transform.position = new Vector2(0.5f, 1f);
-        text.text = "seed: " + seed + " maxRoutes = " + maxRoutes + " " + level;
+        //text.text = "seed: " + seed + " maxRoutes = " + maxRoutes + " " + level;
         PlayerPrefs.SetInt("seed", 0);
+        PlayerPrefs.SetInt("loadedSeed", 0);
     }
-  
+
     private void CreateSeed()
     {
         string datetime = System.DateTime.Now.ToString("MM/dd") + System.DateTime.Now.ToString("hh:mm:ss");
@@ -140,7 +155,7 @@ public class Demonstration : MonoBehaviour
                 resultString += datetime[i];
         }
         Random.InitState(int.Parse(resultString));
-        seed = Random.Range(0, 1000000000);
+        seed = Random.Range(10000, 999999999);
     }
 
     private void PathFinding()
@@ -162,14 +177,13 @@ public class Demonstration : MonoBehaviour
 
     private IEnumerator FillWalls()
     {
-
+        //filled = true;
         BoundsInt bounds = groundMap.cellBounds;
-        for (int xMap = bounds.xMin - 11; xMap <= bounds.xMax + 10; xMap++)
+        for (int xMap = bounds.xMin - 1; xMap <= bounds.xMax; xMap++)
         {
-            for (int yMap = bounds.yMin - 11; yMap <= bounds.yMax + 10; yMap++)
+            for (int yMap = bounds.yMin - 1; yMap <= bounds.yMax; yMap++)
             {
-
-                yield return new WaitForSeconds(0.01f);
+                yield return new WaitForSeconds(0.0001f);
                 Vector3Int pos = new Vector3Int(xMap, yMap, 0);
 
                 if (startPos == Vector3.zero)
@@ -255,16 +269,27 @@ public class Demonstration : MonoBehaviour
                 }
             }
         }
+        exitPos = new Vector2(lastX + 0.5f, lastY + 0.5f);
+        while (obstacleList.Contains(exitPos))
+        {
+            exitPos = new Vector2(Random.Range(lastX - lastRoomSize, lastX + lastRoomSize + 1) + 0.5f, Random.Range(lastY - lastRoomSize, lastY + lastRoomSize + 1) + 0.5f);
+        }
+        exit.transform.position = exitPos;
     }
 
     private IEnumerator NewRoute(int x, int y, int routeLength, Vector2Int previousPos)
     {
+        ++routes;
+        Debug.Log(maxRoutes);
+        Debug.Log(routeCount);
         if (routeCount < maxRoutes)
         {
+            Debug.Log(maxRoutes);
+            Debug.Log(routeCount);
+            Debug.Log(routeLength);
             routeCount++;
             while (++routeLength < maxRouteLength)
             {
-                yield return new WaitForSeconds(0.5f);
                 //Initialize
                 bool routeUsed = false;
                 int xOffset = x - previousPos.x;
@@ -275,6 +300,7 @@ public class Demonstration : MonoBehaviour
                 previousPos = new Vector2Int(x, y);
 
                 //Go Straight
+                yield return new WaitForSeconds(0.1f);
                 if (Random.Range(1, 100) <= deviationRate)
                 {
                     if (routeUsed)
@@ -291,6 +317,7 @@ public class Demonstration : MonoBehaviour
                     }
                 }
 
+                yield return new WaitForSeconds(0.1f);
                 //Go left
                 if (Random.Range(1, 100) <= deviationRate)
                 {
@@ -307,6 +334,8 @@ public class Demonstration : MonoBehaviour
                         routeUsed = true;
                     }
                 }
+
+                yield return new WaitForSeconds(0.1f);
                 //Go right
                 if (Random.Range(1, 100) <= deviationRate)
                 {
@@ -324,6 +353,7 @@ public class Demonstration : MonoBehaviour
                     }
                 }
 
+                yield return new WaitForSeconds(0.1f);
                 if (!routeUsed)
                 {
                     x = previousPos.x + xOffset;
@@ -332,6 +362,13 @@ public class Demonstration : MonoBehaviour
                 }
             }
         }
+        fill = true;
+        ++xdd;
+    }
+    public void Save()
+    {
+        PlayerPrefs.SetInt("savedSeed", seed);
+        Debug.Log("Saved, seed: " + PlayerPrefs.GetInt("savedSeed"));
     }
 
     private void GenerateSquare(int x, int y, int radius)
@@ -351,7 +388,7 @@ public class Demonstration : MonoBehaviour
             }
         }
 
-        switch(radius)
+        switch (radius)
         {
             case 1:
                 if (Random.Range(0, 100) <= obstacleRate)
@@ -375,7 +412,7 @@ public class Demonstration : MonoBehaviour
                 }
                 break;
 
-             default:
+            default:
                 for (int i = 0; i < Random.Range(3, radius); i++)
                 {
                     obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
@@ -400,7 +437,10 @@ public class Demonstration : MonoBehaviour
                     Enemy.GetComponent<Enemy>().target = player.transform;
                 }
                 break;
-
-        } 
+        }
+    }
+    private IEnumerator waiter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }

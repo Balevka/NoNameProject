@@ -10,17 +10,17 @@ public class LevelChanger : MonoBehaviour
     private GameObject levelImage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Test"))
+        if (collision.CompareTag("Demo"))
         {
-            Application.LoadLevel("TestScene");
+            Application.LoadLevel("Demonstration");
         }
         if (collision.CompareTag("kurapapuru"))
         {
             Application.LoadLevel("KurupapuruRain");
         }
-        if (collision.CompareTag("back"))
+        if (collision.CompareTag("A*"))
         {
-            Application.LoadLevel("MainMenu");
+            Application.LoadLevel("TestGrid");
         }
         if (collision.CompareTag("Random"))
         {
