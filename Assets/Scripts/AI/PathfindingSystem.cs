@@ -119,7 +119,6 @@ public class PathfindingSystem
 
                 neighbourNode.G = currentNode.G + CalculateDistanceBetweenNodes(currentNode, neighbourNode);
 
-
                 if ((openList.Contains(neighbourNode) && neighbourNode.G < currentNode.G) || !openList.Contains(neighbourNode))
                 {
                     neighbourNode.ParentNode = currentNode;
@@ -189,9 +188,11 @@ public class PathfindingSystem
     }
 
 
+    
+
 
     // Возвращает список соседних узлов конкретного узла
-    private List<Node> GetNeighboursNodes(Node node)
+    public List<Node> GetNeighboursNodes(Node node)
     {
         List<Node> neighbourList = new List<Node>();
         Node currentNode;
@@ -258,6 +259,8 @@ public class PathfindingSystem
         return pathNodeList;
     }
 
+
+    
     
 
 

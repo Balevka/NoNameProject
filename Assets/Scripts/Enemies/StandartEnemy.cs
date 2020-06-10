@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthState : MonoBehaviour
+public class StandartEnemy : Enemy
 {
-    public int state;
+   
+
 }
