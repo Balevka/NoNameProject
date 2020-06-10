@@ -5640,6 +5640,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2967248432879681004, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: enemyNotIgnored.m_Bits
+      value: 57143
+      objectReference: {fileID: 0}
     - target: {fileID: 3623990639104961096, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -25,7 +25,6 @@ public class TestPath : MonoBehaviour
 
 
         system = new PathfindingSystem(10, 10, 2f, transform.position, true);
-        Debug.Log(PathfindingSystem.InstancePath.Grid.CellSize);
         system.GetNode(4, 2).IsWalkable = false;
         system.GetNode(4, 3).IsWalkable = false;
         system.GetNode(4, 4).IsWalkable = false;
@@ -63,7 +62,7 @@ public class TestPath : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        
         Movement();
         if (Input.GetMouseButtonDown(0))
         {
@@ -72,7 +71,10 @@ public class TestPath : MonoBehaviour
 
             system.Grid.GetCellIndex(mouseWorldPosition, out int x, out int y);
 
-            SetTargetPosition(system.Grid.GetCellPosition(x, y));    
+            
+            SetTargetPosition(system.Grid.GetCellPosition(x, y));
+            
+
         }
 
 
@@ -90,6 +92,7 @@ public class TestPath : MonoBehaviour
 
     private void Movement()
     {
+
         if (path != null)
         {
             
@@ -120,11 +123,14 @@ public class TestPath : MonoBehaviour
 
     private void SetTargetPosition(Vector3 targetPosition)
     {
-
         
+
 
         currentIndex = 0;
         path = system.FindPath(startPosition, targetPosition);
+
+        List<Node> searchN = CreateAreaSearch(2, PathfindingSystem.InstancePath.Grid.GetCellValue(targetPosition));
+        Debug.Log(searchN.Count);
 
 
         for (int i = 0; i < path.Count - 1; i++)
@@ -141,6 +147,46 @@ public class TestPath : MonoBehaviour
             
         }
             
+    }
+
+
+    public List<Node> CreateAreaSearch(int radiusSearch, Node node)
+    {
+
+        if (path != null)
+        {
+            
+           /* List<Vector3> pathVectors = path;
+            pathVectors.Reverse();
+            Vector3 lastPosition = pathVectors[0];
+            pathVectors.Clear();*/
+
+            /*Node endNode = PathfindingSystem.InstancePath.Grid.GetCellValue(lastPosition);*/
+
+            List<Node> searchZone = PathfindingSystem.InstancePath.GetNeighboursNodes(node);
+            Debug.Log(searchZone.Count);
+            int countNodes = searchZone.Count;
+
+            for(int i = 0; i<countNodes; i++)
+            {
+                List<Node> neighbourList = PathfindingSystem.InstancePath.GetNeighboursNodes(searchZone[i]);
+
+                foreach(Node n in neighbourList)
+                {
+                    if (!searchZone.Contains(n))
+                    {
+                        searchZone.Add(n);
+                    }
+                }
+            }
+
+            return searchZone;
+
+        }
+
+
+        return null;
+
     }
 }
 
