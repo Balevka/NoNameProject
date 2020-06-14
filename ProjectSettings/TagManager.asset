@@ -30,8 +30,8 @@ TagManager:
   - Enemy
   - Bullet
   - Obstacle
-  - 
-  - 
+  - Item
+  - EnemyBullet
   - 
   - 
   - 

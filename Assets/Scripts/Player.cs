@@ -8,8 +8,7 @@ public class Player : MonoBehaviour
     public float speed = 3f;
     [SerializeField] internal Animator playerAnimator;
     private Rigidbody2D rb;
-    private int maxHp = 20;
-    private int hp = 10;
+    [SerializeField] public int hp = 10;
     public Canvas GUI;
     public Canvas Loss;
     public Canvas Pause;
@@ -18,8 +17,6 @@ public class Player : MonoBehaviour
     private Vector2 movement;
     private Vector2 mousePos;
     [SerializeField] private Camera cam;
-
-    public int Hp { get => hp; set => hp = value; }
 
     void Start()
     {
@@ -76,12 +73,12 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.layer == 13)
         {
-            hpLoss();
-            hpBar.fillAmount = hp / (float)maxHp;
+            HpLoss();
+            hpBar.fillAmount = hp / 10f;
         }
     }
 
-    private void hpLoss()
+    private void HpLoss()
     {
         hp--;
         Debug.Log(hp);

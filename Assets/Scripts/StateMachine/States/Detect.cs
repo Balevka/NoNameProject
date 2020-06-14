@@ -12,8 +12,15 @@ public class Detect : State
     {
         //Debug.Log("Обнаружен!");
 
+        if (Enemy.DistanceToTarget().magnitude <= Enemy.attackDistantion)
+        {
+            Enemy.SetState(new Attack(Enemy));
+            yield break;
+        }
+        
+        
         Enemy.SetState(new Following(Enemy));
-
         yield break;
+ 
     }
 }
