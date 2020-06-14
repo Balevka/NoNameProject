@@ -8,7 +8,10 @@ public class Player : MonoBehaviour
     public float speed = 3f;
     [SerializeField] internal Animator playerAnimator;
     private Rigidbody2D rb;
-    [SerializeField] public int hp = 10;
+    private int hp;
+    private int maxHP = 10;
+    [SerializeField] private Text roflaniumCounter;
+    private int roflanium = 0;
     public Canvas GUI;
     public Canvas Loss;
     public Canvas Pause;
@@ -18,20 +21,30 @@ public class Player : MonoBehaviour
     private Vector2 mousePos;
     [SerializeField] private Camera cam;
 
+    public int Hp { get => hp; set => hp = value; }
+    public int Roflanium { get => roflanium; set => roflanium = value; }
+
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetInt("inGameHP"));
+        hp = PlayerPrefs.GetInt("inGameHP");
+        roflanium = PlayerPrefs.GetInt("inGameRofl");
         rb = GetComponent<Rigidbody2D>();        
     }
 
     // Update is called once per frame
     private void FixedUpdate()
-    {
-        
+    {        
         rb.velocity = Movement();
         if(hp == 0)
         {
             PlayerDead();
         }
+        if(hp > maxHP)
+        {
+            hp = maxHP;
+        }
+        Updater();
     }
     public void PlayerDead()
     {
@@ -66,22 +79,27 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Exit")) 
-            Application.LoadLevel(Application.loadedLevel);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.layer == 13)
+        if (collision.CompareTag("Exit"))
         {
-            HpLoss();
-            hpBar.fillAmount = hp / 10f;
+            PlayerPrefs.SetInt("inGameHP", hp);
+            PlayerPrefs.SetInt("inGameRofl", roflanium);
+            Application.LoadLevel(Application.loadedLevel);
+        }
+
+        if (collision.gameObject.layer == 17)
+        {
+            hpChanger(-1);
+            Updater();
         }
     }
-
-    private void HpLoss()
-    {
-        hp--;
-        Debug.Log(hp);
-        //yield return new WaitForSeconds(2);
+    public void Updater() {
+        roflaniumCounter.text = roflanium.ToString();
+        hpBar.fillAmount = hp / 10f;
+    }
+    public void roflChanger(int count) {
+        roflanium = roflanium + count;
+    }
+    public void hpChanger(int count) {
+        hp = hp + count;
     }
 }

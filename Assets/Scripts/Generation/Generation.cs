@@ -41,13 +41,17 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private GameObject[] obstacleTiles;
     [SerializeField]
+    private GameObject unbreakableObstacle;
+    [SerializeField]
     private Tilemap groundMap;
     [SerializeField]
     private Tilemap pitMap;
     [SerializeField]
     private Tilemap wallMap;
     [SerializeField]
-    private GameObject player;
+    private GameObject playerGO;
+    [SerializeField]
+    private Player player;
     [SerializeField]
     private GameObject enemy;
     [SerializeField]
@@ -119,7 +123,7 @@ public class Generation : MonoBehaviour
             exitPos = new Vector2(Random.Range(lastX - lastRoomSize, lastX + lastRoomSize + 1) + 0.5f, Random.Range(lastY - lastRoomSize, lastY + lastRoomSize + 1) + 0.5f);
         }
         exit.transform.position = exitPos;
-        player.transform.position = new Vector2(0.5f, 1f);
+        playerGO.transform.position = new Vector2(0.5f, 1f);
         text.text = "seed: " + seed + " maxRoutes = " + maxRoutes + " " + level;
         PlayerPrefs.SetInt("seed", 0);
         PlayerPrefs.SetInt("loadedSeed", 0);
@@ -326,6 +330,8 @@ public class Generation : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("savedSeed", seed);
+        PlayerPrefs.SetInt("savedRofl", player.Roflanium);
+        PlayerPrefs.SetInt("savedHP", player.Hp);
         Debug.Log("Saved, seed: " + PlayerPrefs.GetInt("savedSeed"));
     }
 
@@ -366,7 +372,8 @@ public class Generation : MonoBehaviour
                     }
                     enemyList.Add(enemyPos);
                     var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
-                    Enemy.GetComponent<Enemy>().target = player.transform;
+                    Enemy.GetComponent<Enemy>().target = playerGO.transform;
+                    Enemy.GetComponent<Enemy>().player = playerGO;
                 }
                 break;
 
@@ -378,9 +385,19 @@ public class Generation : MonoBehaviour
                     {
                         obstaclePos = new Vector2(Random.Range(x - radius, x + radius + 1) + 0.5f, Random.Range(y - radius, y + radius + 1) + 0.5f);
                     }
-                    var obstacle = Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
-                    obstacle.GetComponent<ObstacleScript>().grid = grid;
-                    obstacleList.Add(obstaclePos);
+                    if (Random.Range(0, 100) <= 20)
+                    {
+                        var obstacle = Instantiate(unbreakableObstacle, obstaclePos, Quaternion.identity);
+                        obstacle.GetComponent<ObstacleScript>().grid = grid;
+                        obstacleList.Add(obstaclePos);
+                    }
+                    else
+                    {
+                        var obstacle = Instantiate(obstacleTiles[Random.Range(0, obstacleTiles.Length)], obstaclePos, Quaternion.identity);
+                        obstacle.GetComponent<ObstacleScript>().grid = grid;
+                        obstacleList.Add(obstaclePos);
+                    }
+
                 }
 
                 for (int i = 0; i < Random.Range(1, radius - 1); i++)
@@ -392,7 +409,8 @@ public class Generation : MonoBehaviour
                     }
                     enemyList.Add(enemyPos);
                     var Enemy = Instantiate(enemy, enemyPos, Quaternion.identity);
-                    Enemy.GetComponent<Enemy>().target = player.transform;
+                    Enemy.GetComponent<Enemy>().target = playerGO.transform;
+                    Enemy.GetComponent<Enemy>().player = playerGO;
                 }
                 break;
 

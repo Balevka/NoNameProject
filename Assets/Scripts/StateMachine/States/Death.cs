@@ -11,6 +11,7 @@ public class Death : State
     public override IEnumerator HandleState()
     {
         //Debug.Log($"{Enemy.name} :: Умер");
+        Enemy.SpawnObjects();
         Object.Destroy(Enemy.gameObject);
         yield break;
     }

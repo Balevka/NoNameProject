@@ -96,8 +96,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 635469653
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -8655044804660267647, guid: 07a85dfba1777c540bdf6d2474581e35,
     type: 3}
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reactGameObject: {fileID: 0}
+  player: {fileID: 0}
 --- !u!95 &7784871321283485671
 Animator:
   serializedVersion: 3

@@ -5,20 +5,21 @@ using UnityEngine;
 public class Heal : Item
 {
     [SerializeField] private int hpAddScale = 2;
-    private Player playerScript;
-    
-    private void Start()
-    {
-        
-        playerScript = reactGameObject.GetComponent<Player>();
-        
-    }
+    public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        playerScript.hp =+ hpAddScale;
-        //Логика увелечения здоровья
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Sostikovka");
+            player.GetComponent<Player>().hpChanger(hpAddScale);
+            DestroyObject();
+        }
+    }
+    private void DestroyObject()
+    {
 
         Destroy(gameObject);
+        Debug.Log("destroyed");
     }
 }

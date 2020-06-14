@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Grid grid;
     public Canvas GUI;
     public Canvas Loss;
+    public Player player;
     public Canvas Paused;
     public Canvas Menu;
     public InputField input;
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("seed", 0);
         PlayerPrefs.SetInt("savedSeed", 0);
+        PlayerPrefs.SetInt("inGameHP", 10);
+        PlayerPrefs.SetInt("inGameRofl", 0);
         SceneManager.LoadScene("Hub");
     }
     public void SaveGame()
@@ -54,9 +57,13 @@ public class GameManager : MonoBehaviour
     public void LoadGame()
     {
         int seed;
+        int hp = 10;
+        int rofl = 0;
         if (PlayerPrefs.GetInt("loadedSeed") > 0)
         {
             seed = PlayerPrefs.GetInt("loadedSeed");
+            PlayerPrefs.SetInt("inGameHP", hp);
+            PlayerPrefs.SetInt("inGameRofl", rofl);
             PlayerPrefs.SetInt("seed", seed);
             SceneManager.LoadScene("Dungeon");
         }
@@ -65,6 +72,10 @@ public class GameManager : MonoBehaviour
             if (PlayerPrefs.GetInt("savedSeed") > 0)
             {
                 seed = PlayerPrefs.GetInt("savedSeed");
+                hp = PlayerPrefs.GetInt("savedHP");
+                rofl = PlayerPrefs.GetInt("savedRofl");
+                PlayerPrefs.SetInt("inGameRofl", rofl);
+                PlayerPrefs.SetInt("inGameHP", hp);
                 PlayerPrefs.SetInt("seed", seed);
                 SceneManager.LoadScene("Dungeon");
             }

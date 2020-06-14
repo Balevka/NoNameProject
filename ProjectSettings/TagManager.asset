@@ -13,6 +13,8 @@ TagManager:
   - obstacle
   - Demo
   - A*
+  - Heal
+  - Rofl
   layers:
   - Default
   - TransparentFX

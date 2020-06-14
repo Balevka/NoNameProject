@@ -12,6 +12,12 @@ public  class Enemy : StateMachine
     [SerializeField] 
     private GameObject healthBar;
 
+    [SerializeField] 
+    private GameObject heal;
+
+    [SerializeField] 
+    private GameObject rofl;
+
     //Дальность зрения
     [SerializeField]
     internal float maxDistance = 5f;
@@ -26,6 +32,9 @@ public  class Enemy : StateMachine
     //Цель
     [SerializeField]
     public Transform target = null;
+
+    [SerializeField]
+    public GameObject player = null;
 
 
     [SerializeField]
@@ -277,5 +286,18 @@ public  class Enemy : StateMachine
 
         return null;
 
+    }
+    public void SpawnObjects()
+    {
+        if (Random.Range(0, 100) <= 10)
+        {
+           var Heal = Instantiate(heal, new Vector2(this.gameObject.transform.position.x + 0.5f, this.gameObject.transform.position.y), Quaternion.identity);
+            Heal.GetComponent<Heal>().player = player;
+        }
+        if (Random.Range(0, 100) <= 30)
+        {
+            var Rofl = Instantiate(rofl, new Vector2(this.gameObject.transform.position.x - 0.5f, this.gameObject.transform.position.y), Quaternion.identity);
+            Rofl.GetComponent<Roflanium>().player = player;
+        }
     }
 }

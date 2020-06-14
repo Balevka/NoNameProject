@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6405878717097885042}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,8 +205,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -819210723
-  m_SortingLayer: 5
+  m_SortingLayerID: 635469653
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   healthBar: {fileID: 284978767559261440}
+  heal: {fileID: 3697538947996333123, guid: eccc47f228958ce478ce408891b7df43, type: 3}
+  rofl: {fileID: 7784871321283485673, guid: 7fae395dbbd5e0740bc337f9c9382070, type: 3}
   maxDistance: 5
   lookingAngle: 45
   attackDelay: 1
