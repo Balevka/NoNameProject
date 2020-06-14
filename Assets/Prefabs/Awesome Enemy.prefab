@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2831235563670112102}
   - component: {fileID: 55143608277342260}
+  - component: {fileID: 8095912834842814820}
   m_Layer: 13
   m_Name: GameObject
   m_TagString: Untagged
@@ -70,18 +71,68 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7349882584872989000, guid: 16f142ccb09ce9d438932fa67391f365,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.07300124, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8095912834842814820
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284978767559261440}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!1 &3263880415686307315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6405878717097885042}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6405878717097885042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3263880415686307315}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.067, y: -0.0053661666, z: -0}
+  m_LocalScale: {x: 0.16666667, y: 0.16666667, z: 0}
+  m_Children: []
+  m_Father: {fileID: 3623990639104961096}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3623990639104961097
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +165,7 @@ Transform:
   m_LocalScale: {x: 6, y: 6, z: 0}
   m_Children:
   - {fileID: 2831235563670112102}
+  - {fileID: 6405878717097885042}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -230,10 +282,15 @@ MonoBehaviour:
   healthBar: {fileID: 284978767559261440}
   maxDistance: 5
   lookingAngle: 45
+  attackDelay: 1
   target: {fileID: 0}
   speed: 5
   enemyNotIgnored:
     serializedVersion: 2
     m_Bits: 0
   isPlayerHere: 0
+  attackDistantion: 2
   enemyBeginPosition: {x: 0, y: 0, z: 0}
+  firePoint: {fileID: 6405878717097885042}
+  enemyProjectTile: {fileID: 31617749323210397, guid: 9a4c872ab4853e54092ec08a3b3c4af6,
+    type: 3}

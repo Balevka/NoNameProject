@@ -19,6 +19,12 @@ public class Following : State
             Enemy.SetTargetPosition(Enemy.target.position);
             Enemy.RotationForTarget();
 
+            if (Enemy.DistanceToTarget().magnitude <= Enemy.attackDistantion)
+            {
+                Enemy.SetState(new Attack(Enemy));
+                yield break;
+            }
+                
             if (!Enemy.IsLookingOnPlayer())
             {
                 Enemy.SetState(new FindTarget(Enemy));

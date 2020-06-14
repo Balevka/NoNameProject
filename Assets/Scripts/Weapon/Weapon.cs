@@ -43,7 +43,6 @@ public class Weapon : MonoBehaviour
 
     private void Shooting()
     {
-        
         GameObject pt =  Instantiate(projectTile, firePoint.position, firePoint.rotation);
         pt.GetComponent<Rigidbody2D>().AddForce(firePoint.right * projectTileForce, ForceMode2D.Impulse);
     }

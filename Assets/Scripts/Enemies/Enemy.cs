@@ -20,6 +20,9 @@ public  class Enemy : StateMachine
     [SerializeField]
     internal float lookingAngle = 45f;
 
+    [SerializeField]
+    public float attackDelay = 1f;
+
     //Цель
     [SerializeField]
     public Transform target = null;
@@ -36,6 +39,9 @@ public  class Enemy : StateMachine
     [SerializeField]
     private bool isPlayerHere = false;
 
+
+    [SerializeField] public float attackDistantion = 2f;
+
     #endregion
 
     #region Pathfinding Fields
@@ -50,6 +56,12 @@ public  class Enemy : StateMachine
     private float healthPart;
     private bool isMoving;
     public Vector3 enemyBeginPosition;
+
+    [SerializeField]
+    private Transform firePoint;
+
+    [SerializeField]
+    private GameObject enemyProjectTile;
 
     // Установка значений
     private void Start()
@@ -67,6 +79,7 @@ public  class Enemy : StateMachine
     private void Update()
     {
         
+            
 
 
         if (Input.GetMouseButtonDown(1))
@@ -109,6 +122,13 @@ public  class Enemy : StateMachine
 
         
     }
+
+    public void Attack()
+    {
+        GameObject enemyPt = Instantiate(enemyProjectTile, firePoint.position, firePoint.rotation);
+        enemyPt.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 20f, ForceMode2D.Impulse);
+    }
+    
 
     public void GetDamage(float damage)
     {
@@ -154,15 +174,20 @@ public  class Enemy : StateMachine
 
     }
 
+    public Vector3 DistanceToTarget()
+    {
+        return target.position - transform.position;
+    }
+
     public bool IsLookingOnPlayer()
     {
-        Vector2 distance = target.position - transform.position;
+        Vector2 distance = DistanceToTarget();
         return lookingAngle > Vector2.Angle(transform.right, distance) && distance.magnitude <= maxDistance;
     }
 
     public void RotationForTarget()
     {
-        Vector3 lookDir = target.position - transform.position;
+        Vector3 lookDir = DistanceToTarget();
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         enemyRb.rotation = angle;
     }
