@@ -22,7 +22,7 @@ public class FindTarget : State
 
             time++;
             Debug.Log(time);
-            if(time > 200)
+            if(time > 1000)
             {
                 Enemy.SetTargetPosition(Enemy.enemyBeginPosition);
                 Enemy.SetState(new Calm(Enemy));

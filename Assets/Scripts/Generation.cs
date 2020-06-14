@@ -191,8 +191,6 @@ public class Generation : MonoBehaviour
                 {
                     pitMap.SetTile(pos, pitTile);
                     propPositionsList.Add(pos);
-
-
                     if (tileTL != null)
                     {
                         wallMap.SetTile(pos, dotTLTile);

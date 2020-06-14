@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class inputcheck : MonoBehaviour
 {
+    [SerializeField]
+    private Player player;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -25,6 +27,22 @@ public class inputcheck : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Application.LoadLevel(Application.loadedLevel);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Application.LoadLevel("TestGrid");
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Application.LoadLevel("TestScene");
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            player.Hp = player.Hp + 10;
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Application.LoadLevel("Dungeon");
         }
         if (Input.GetKeyDown(KeyCode.M))
         {

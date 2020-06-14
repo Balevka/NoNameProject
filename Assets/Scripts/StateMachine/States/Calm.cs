@@ -13,7 +13,7 @@ public class Calm : State
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            Debug.Log($"{Enemy.name} :: Нахожусь в спокойствии");
+            //Debug.Log($"{Enemy.name} :: Нахожусь в спокойствии");
             if (Enemy.IsLookingOnPlayer())
             {
                 Enemy.SetState(new Detect(Enemy));

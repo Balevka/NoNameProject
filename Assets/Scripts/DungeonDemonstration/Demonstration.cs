@@ -113,7 +113,7 @@ public class Demonstration : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        camera.transform.position = new Vector3(lastX/2, lastY/2, -10);
+        //camera.transform.position = new Vector3(lastX/2, lastY/2, -10);
     }
 
     private IEnumerator xd()

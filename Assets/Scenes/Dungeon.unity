@@ -168,8 +168,10 @@ MonoBehaviour:
   GUI: {fileID: 1106740206}
   Loss: {fileID: 1759986296}
   Paused: {fileID: 460432970}
+  Menu: {fileID: 0}
   input: {fileID: 0}
-  warning: {fileID: 0}
+  warningSave: {fileID: 0}
+  warningDelete: {fileID: 0}
 --- !u!1 &59747534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,6 +2195,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd38d5b723f38ed4f82d85ad06ab2901, type: 3}
+--- !u!114 &1041358941 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3471427926090163437, guid: fd38d5b723f38ed4f82d85ad06ab2901,
+    type: 3}
+  m_PrefabInstance: {fileID: 1041358940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154414125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62baea058dbbab243b726ce4c5b62309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1097470445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66913c295d9bd74d85ede590c82bfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1041358941}
 --- !u!1 &1520301220
 GameObject:
   m_ObjectHideFlags: 0
