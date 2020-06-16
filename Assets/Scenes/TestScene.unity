@@ -5615,10 +5615,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 349628641}
     m_Modifications:
+    - target: {fileID: 55143608277342260, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 55143608277342260, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 55143608277342260, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 55143608277342260, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 55143608277342260, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2050772398710976053, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
         type: 3}
       propertyPath: m_Constraints
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831235563670112102, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831235563670112102, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.040816326
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831235563670112102, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1234568
       objectReference: {fileID: 0}
     - target: {fileID: 2967248432879681004, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
         type: 3}
@@ -5650,6 +5690,11 @@ PrefabInstance:
       propertyPath: attackDistantion
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2967248432879681004, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 965424990}
     - target: {fileID: 3623990639104961096, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6793,7 +6838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerAnimator: {fileID: 965424993}
-  hp: 10
+  roflaniumCounter: {fileID: 0}
   GUI: {fileID: 0}
   Loss: {fileID: 0}
   Pause: {fileID: 0}
@@ -13584,7 +13629,7 @@ Camera:
   far clip plane: 20
   field of view: 60
   orthographic: 1
-  orthographic size: 2.4943142
+  orthographic size: 4.41
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -13640,6 +13685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66913c295d9bd74d85ede590c82bfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1001 &1836752065
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -93,8 +94,11 @@ public class Player : MonoBehaviour
         }
     }
     public void Updater() {
-        roflaniumCounter.text = roflanium.ToString();
-        hpBar.fillAmount = hp / 10f;
+        if (SceneManager.GetActiveScene().name == "Dungeon")
+        {
+            roflaniumCounter.text = roflanium.ToString();
+            hpBar.fillAmount = hp / 10f;
+        }
     }
     public void roflChanger(int count) {
         roflanium = roflanium + count;

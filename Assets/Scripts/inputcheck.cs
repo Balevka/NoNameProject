@@ -15,13 +15,7 @@ public class inputcheck : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Hub")
                 Application.LoadLevel("MainMenu");
-            if (SceneManager.GetActiveScene().name == "Demonstration")
-                Application.LoadLevel("Hub");
-            if (SceneManager.GetActiveScene().name == "TestGrid")
-                Application.LoadLevel("Hub");
-            if (SceneManager.GetActiveScene().name == "TestGrid")
-                Application.LoadLevel("Hub");
-            if (SceneManager.GetActiveScene().name == "Dungeon")
+            else
                 Application.LoadLevel("Hub");
         }
         if (Input.GetKeyDown(KeyCode.R))

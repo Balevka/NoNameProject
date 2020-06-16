@@ -92,6 +92,30 @@ TextureImporter:
   - first:
       213: -3316074341632751267
     second: Dungeon Elements_16
+  - first:
+      213: -6201423638930012138
+    second: Dungeon Elements_13
+  - first:
+      213: 2373705446103957762
+    second: Dungeon Elements_14
+  - first:
+      213: 6871913625775440205
+    second: Dungeon Elements_15
+  - first:
+      213: 2731137917590413326
+    second: Dungeon Elements_16
+  - first:
+      213: -2697385999747341525
+    second: Dungeon Elements_17
+  - first:
+      213: 2146022719090512020
+    second: Dungeon Elements_18
+  - first:
+      213: -3419396853951676371
+    second: Dungeon Elements_19
+  - first:
+      213: 3629260388667181358
+    second: Dungeon Elements_20
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -476,8 +500,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95f5a11328c266570800000000000000
-      internalID: 8459497887743237977
+      spriteID: 618cdd39e0e10f9a0800000000000000
+      internalID: -6201423638930012138
       vertices: []
       indices: 
       edges: []
@@ -497,8 +521,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b20c5f3118ce70cb0800000000000000
-      internalID: -4897686030612316117
+      spriteID: 201cf6cd68811f020800000000000000
+      internalID: 2373705446103957762
       vertices: []
       indices: 
       edges: []
@@ -518,8 +542,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6da59e2b17a8a3a0800000000000000
-      internalID: -6653884714252391057
+      spriteID: d41038f9801fd5f50800000000000000
+      internalID: 6871913625775440205
       vertices: []
       indices: 
       edges: []
@@ -539,8 +563,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d594132a4ffeaf1d0800000000000000
-      internalID: -3316074341632751267
+      spriteID: e00a3924773f6e520800000000000000
+      internalID: 2731137917590413326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Elements_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23a2fe79b5f09ad0800000000000000
+      internalID: -2697385999747341525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Elements_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490de4bfa4438cd10800000000000000
+      internalID: 2146022719090512020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Elements_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d204f169dacdb80d0800000000000000
+      internalID: -3419396853951676371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon Elements_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2947e74819bd5230800000000000000
+      internalID: 3629260388667181358
       vertices: []
       indices: 
       edges: []

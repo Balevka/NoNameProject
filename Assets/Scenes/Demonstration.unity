@@ -167,6 +167,7 @@ MonoBehaviour:
   grid: {fileID: 59747535}
   GUI: {fileID: 0}
   Loss: {fileID: 0}
+  player: {fileID: 0}
   Paused: {fileID: 0}
   Menu: {fileID: 0}
   input: {fileID: 0}
@@ -256,10 +257,12 @@ MonoBehaviour:
   - {fileID: 6443442008078511073, guid: 73f3d876b8aa71649a97e172c4618938, type: 3}
   - {fileID: 8799107450952340115, guid: 5627952111a68e24ab715236f7ebcf5f, type: 3}
   - {fileID: 1973952112151708141, guid: 352b48e410881124faa93128aab435b8, type: 3}
+  unbreakableObstacle: {fileID: 0}
   groundMap: {fileID: 1534316414}
   pitMap: {fileID: 368365931}
   wallMap: {fileID: 1613403644}
-  player: {fileID: 154414125}
+  playerGO: {fileID: 0}
+  player: {fileID: 0}
   enemy: {fileID: 3623990639104961097, guid: 3a3bbb3c8e6c3e64ea648e79ef9a04f8, type: 3}
   exit: {fileID: 1629776027}
   deviationRate: 12
@@ -1035,7 +1038,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 80
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1090,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a66913c295d9bd74d85ede590c82bfe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &1534316411
 GameObject:
   m_ObjectHideFlags: 0

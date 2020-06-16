@@ -22,6 +22,10 @@ public class LevelChanger : MonoBehaviour
         {
             Application.LoadLevel("TestGrid");
         }
+        if (collision.CompareTag("Test"))
+        {
+            Application.LoadLevel("TestScene");
+        }
         if (collision.CompareTag("Random"))
         {
             Application.LoadLevel("Dungeon");
