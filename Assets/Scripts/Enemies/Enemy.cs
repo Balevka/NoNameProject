@@ -190,8 +190,12 @@ public  class Enemy : StateMachine
 
     public bool IsLookingOnPlayer()
     {
+        
+        
+        
         Vector2 distance = DistanceToTarget();
-        return lookingAngle > Vector2.Angle(transform.right, distance) && distance.magnitude <= maxDistance;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, distance, Mathf.Infinity, enemyNotIgnored);
+        return lookingAngle > Vector2.Angle(transform.right, distance) && distance.magnitude <= maxDistance && hit.collider.gameObject.layer == 11;
     }
 
     public void RotationForTarget()

@@ -282,16 +282,17 @@ MonoBehaviour:
   healthBar: {fileID: 284978767559261440}
   heal: {fileID: 3697538947996333123, guid: eccc47f228958ce478ce408891b7df43, type: 3}
   rofl: {fileID: 7784871321283485673, guid: 7fae395dbbd5e0740bc337f9c9382070, type: 3}
-  maxDistance: 5
-  lookingAngle: 45
+  maxDistance: 7
+  lookingAngle: 60
   attackDelay: 1
   target: {fileID: 0}
-  speed: 5
+  player: {fileID: 0}
+  speed: 7
   enemyNotIgnored:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 35328
   isPlayerHere: 0
-  attackDistantion: 2
+  attackDistantion: 4
   enemyBeginPosition: {x: 0, y: 0, z: 0}
   firePoint: {fileID: 6405878717097885042}
   enemyProjectTile: {fileID: 31617749323210397, guid: 9a4c872ab4853e54092ec08a3b3c4af6,

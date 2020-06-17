@@ -8,7 +8,9 @@ public class TestPath : MonoBehaviour
     PathfindingSystem system;
     public GameObject enemy;
     Rigidbody2D enemyRb;
-    
+    public GameObject wall;
+
+
     int currentIndex = 0;
     
     Vector3 startPosition;
@@ -25,9 +27,7 @@ public class TestPath : MonoBehaviour
 
 
         system = new PathfindingSystem(10, 10, 2f, transform.position, true);
-        system.GetNode(4, 2).IsWalkable = false;
-        system.GetNode(4, 3).IsWalkable = false;
-        system.GetNode(4, 4).IsWalkable = false;
+        
 
         
 
@@ -37,7 +37,7 @@ public class TestPath : MonoBehaviour
         startPosition = system.Grid.GetCellPosition(0, 0);
         
         
-
+        
 
 
 
@@ -77,17 +77,14 @@ public class TestPath : MonoBehaviour
 
         }
 
-
-
-
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            system.Grid.GetCellIndex(mouseWorldPosition, out int nX, out int nY);
-
-            Node node = system.GetNode(nX, nY);
-            Debug.Log($"{node.F}, {node.G}, {node.H}, {node.ParentNode}");
+            PathfindingSystem.InstancePath.Grid.GetCellIndex(mouseWorldPosition, out int nX, out int nY);
+            system.GetNode(nX, nY).IsWalkable = false;
+            Instantiate(wall, PathfindingSystem.InstancePath.Grid.GetCellPosition(nX, nY) + Vector3.one * (system.Grid.CellSize / 2), Quaternion.identity);
         }
+
     }
 
     private void Movement()
